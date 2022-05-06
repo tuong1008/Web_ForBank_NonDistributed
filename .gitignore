@@ -1,0 +1,15 @@
+# Netbeans
+nb-configuration.xml
+build/
+nbbuild/
+dist/
+nbdist/
+
+# IDEA
+target/
+*.iml
+.idea
+out/
+
+# all
+node_modules
