@@ -8,7 +8,7 @@ package model;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
-public class GD_ChuyenTien{
+public class GD_ChuyenTien {
     private int maGD;
     private String soTK_Chuyen;
     private Timestamp ngayGD;
@@ -20,48 +20,48 @@ public class GD_ChuyenTien{
         return maGD;
     }
 
-    public String getSoTK_Chuyen() {
-        return soTK_Chuyen;
-    }
-
-    public Timestamp getNgayGD() {
-        return ngayGD;
-    }
-
-    public BigDecimal getSoTien() {
-        return soTien;
-    }
-
-    public String getSoTK_Nhan() {
-        return soTK_Nhan;
-    }
-
-    public String getMaNV() {
-        return maNV;
-    }
-
     public void setMaGD(int maGD) {
         this.maGD = maGD;
+    }
+
+    public String getSoTK_Chuyen() {
+        return soTK_Chuyen;
     }
 
     public void setSoTK_Chuyen(String soTK_Chuyen) {
         this.soTK_Chuyen = soTK_Chuyen;
     }
 
+    public Timestamp getNgayGD() {
+        return ngayGD;
+    }
+
     public void setNgayGD(Timestamp ngayGD) {
         this.ngayGD = ngayGD;
+    }
+
+    public BigDecimal getSoTien() {
+        return soTien;
     }
 
     public void setSoTien(BigDecimal soTien) {
         this.soTien = soTien;
     }
 
+    public String getSoTK_Nhan() {
+        return soTK_Nhan;
+    }
+
     public void setSoTK_Nhan(String soTK_Nhan) {
         this.soTK_Nhan = soTK_Nhan;
+    }
+
+    public String getMaNV() {
+        return maNV;
     }
 
     public void setMaNV(String maNV) {
         this.maNV = maNV;
     }
-    
+
 }

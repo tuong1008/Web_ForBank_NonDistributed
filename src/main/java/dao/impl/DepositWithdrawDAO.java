@@ -6,18 +6,17 @@
 package dao.impl;
 
 import dao.IDepositWithdrawDAO;
-import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import mapper.DepositWithdrawMapper;
 import model.GD_GoiRut;
 
+import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
+import java.util.List;
+
 /**
- *
  * @author Tuong
  */
-public class DepositWithdrawDAO extends AbstractDAO<GD_GoiRut> implements IDepositWithdrawDAO{
+public class DepositWithdrawDAO extends AbstractDAO<GD_GoiRut> implements IDepositWithdrawDAO {
 
     @Override
     public List<GD_GoiRut> getAll(HttpServletRequest req) {
@@ -26,8 +25,8 @@ public class DepositWithdrawDAO extends AbstractDAO<GD_GoiRut> implements IDepos
 
     @Override
     public String insertDepositWithdraw(HttpServletRequest req, String soTK, String loaiGD, BigDecimal soTien, String maNV) {
-        return crudAction(req, true,true, "exec SP_INSERT_GD_GoiRut ?, ?, ?, ?",
+        return crudAction(req, true, true, "exec SP_INSERT_GD_GoiRut ?, ?, ?, ?",
                 soTK, loaiGD, soTien, maNV);
     }
-    
+
 }

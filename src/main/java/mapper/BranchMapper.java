@@ -5,16 +5,16 @@
  */
 package mapper;
 
+import model.ChiNhanh;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import model.ChiNhanh;
 
 
 /**
- *
  * @author Tuong
  */
-public class BranchMapper implements RowMapper<ChiNhanh>{
+public class BranchMapper implements RowMapper<ChiNhanh> {
 
     @Override
     public ChiNhanh mapRow(ResultSet rs) {
@@ -29,5 +29,5 @@ public class BranchMapper implements RowMapper<ChiNhanh>{
             return null;
         }
     }
-    
+
 }

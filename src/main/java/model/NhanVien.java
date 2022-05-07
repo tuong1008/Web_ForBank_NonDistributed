@@ -5,7 +5,7 @@
  */
 package model;
 
-public class NhanVien{
+public class NhanVien {
     private String maNV;
     private String ho;
     private String ten;
@@ -19,64 +19,64 @@ public class NhanVien{
         return maNV;
     }
 
-    public String getHo() {
-        return ho;
-    }
-
-    public String getTen() {
-        return ten;
-    }
-
-    public String getDiaChi() {
-        return diaChi;
-    }
-
-    public String getPhai() {
-        return phai;
-    }
-
-    public String getSoDT() {
-        return soDT;
-    }
-
-    public String getMaCN() {
-        return maCN;
-    }
-
-    public int getTrangThaiXoa() {
-        return trangThaiXoa;
-    }
-
     public void setMaNV(String maNV) {
         this.maNV = maNV;
+    }
+
+    public String getHo() {
+        return ho;
     }
 
     public void setHo(String ho) {
         this.ho = ho;
     }
 
+    public String getTen() {
+        return ten;
+    }
+
     public void setTen(String ten) {
         this.ten = ten;
+    }
+
+    public String getDiaChi() {
+        return diaChi;
     }
 
     public void setDiaChi(String diaChi) {
         this.diaChi = diaChi;
     }
 
+    public String getPhai() {
+        return phai;
+    }
+
     public void setPhai(String phai) {
         this.phai = phai;
+    }
+
+    public String getSoDT() {
+        return soDT;
     }
 
     public void setSoDT(String soDT) {
         this.soDT = soDT;
     }
 
+    public String getMaCN() {
+        return maCN;
+    }
+
     public void setMaCN(String maCN) {
         this.maCN = maCN;
+    }
+
+    public int getTrangThaiXoa() {
+        return trangThaiXoa;
     }
 
     public void setTrangThaiXoa(int trangThaiXoa) {
         this.trangThaiXoa = trangThaiXoa;
     }
-     
+
 }

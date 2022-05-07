@@ -5,15 +5,15 @@
  */
 package mapper;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import model.KhachHang;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
- *
  * @author Tuong
  */
-public class CustomerMapper implements RowMapper<KhachHang>{
+public class CustomerMapper implements RowMapper<KhachHang> {
 
     @Override
     public KhachHang mapRow(ResultSet rs) {
@@ -32,5 +32,5 @@ public class CustomerMapper implements RowMapper<KhachHang>{
             return null;
         }
     }
-    
+
 }

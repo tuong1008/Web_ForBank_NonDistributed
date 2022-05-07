@@ -5,22 +5,17 @@
  */
 package filter;
 
-import java.io.IOException;
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import model.User;
 
+import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 /**
- *
  * @author Tuong
  */
-public class AuthorizationFilter implements Filter{
+public class AuthorizationFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -31,13 +26,12 @@ public class AuthorizationFilter implements Filter{
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String url = request.getRequestURI();
-        if (url.contains("/api")==true && url.contains("/api-subscriber")==false 
-                && url.contains("/api-user-login")==false) {
+        if (url.contains("/api") == true && url.contains("/api-subscriber") == false
+                && url.contains("/api-user-login") == false) {
             User model = (User) request.getSession().getAttribute("userInfo");
             if (model == null) {
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
-            }
-            else{
+            } else {
                 chain.doFilter(servletRequest, servletResponse);
             }
         } else {
@@ -48,5 +42,5 @@ public class AuthorizationFilter implements Filter{
     @Override
     public void destroy() {
     }
-    
+
 }

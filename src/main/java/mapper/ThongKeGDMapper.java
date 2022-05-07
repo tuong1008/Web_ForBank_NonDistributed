@@ -5,12 +5,12 @@
  */
 package mapper;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import model.ThongKeGD;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
- *
  * @author Tuong
  */
 public class ThongKeGDMapper implements RowMapper<ThongKeGD> {
@@ -29,5 +29,5 @@ public class ThongKeGDMapper implements RowMapper<ThongKeGD> {
             return null;
         }
     }
-    
+
 }

@@ -6,26 +6,23 @@
 package controller.bank;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import constant.SystemConstant;
-import java.io.IOException;
-import java.util.List;
+import model.KhachHang;
+import service.ICustomerService;
+
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.KhachHang;
-import model.User;
-import service.ICustomerService;
+import java.io.IOException;
+import java.util.List;
 
 /**
- *
  * @author Tuong
  */
 @WebServlet(urlPatterns = {"/api-bank-created-customer"})
-public class CreatedCustomerAPI extends HttpServlet{
+public class CreatedCustomerAPI extends HttpServlet {
     @Inject
     ICustomerService customerService;
 
@@ -34,15 +31,15 @@ public class CreatedCustomerAPI extends HttpServlet{
         ObjectMapper mapper = new ObjectMapper();
         request.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
-        
+
         String maCN = request.getHeader("maCN");
         List<KhachHang> cus;
-        if (maCN.equals("getAll")){
+        if (maCN.equals("getAll")) {
             cus = customerService.getAll(request);
         } else {
             cus = customerService.getAllByMaCN(request, maCN);
         }
-        
+
         mapper.writeValue(response.getOutputStream(), cus);
     }
 }

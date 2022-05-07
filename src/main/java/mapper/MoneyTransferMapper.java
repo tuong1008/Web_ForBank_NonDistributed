@@ -5,15 +5,15 @@
  */
 package mapper;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import model.GD_ChuyenTien;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
- *
  * @author Tuong
  */
-public class MoneyTransferMapper implements RowMapper<GD_ChuyenTien>{
+public class MoneyTransferMapper implements RowMapper<GD_ChuyenTien> {
 
     @Override
     public GD_ChuyenTien mapRow(ResultSet rs) {
@@ -30,5 +30,5 @@ public class MoneyTransferMapper implements RowMapper<GD_ChuyenTien>{
             return null;
         }
     }
-    
+
 }

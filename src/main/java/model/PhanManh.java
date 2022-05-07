@@ -6,7 +6,6 @@
 package model;
 
 /**
- *
  * @author Tuong
  */
 public class PhanManh {
@@ -18,12 +17,12 @@ public class PhanManh {
         return tenCN;
     }
 
-    public String getTenServer() {
-        return tenServer;
-    }
-
     public void setTenCN(String tenCN) {
         this.tenCN = tenCN;
+    }
+
+    public String getTenServer() {
+        return tenServer;
     }
 
     public void setTenServer(String tenServer) {
@@ -37,5 +36,5 @@ public class PhanManh {
     public void setMaCN(String maCN) {
         this.maCN = maCN;
     }
-    
+
 }

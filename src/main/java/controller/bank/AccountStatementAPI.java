@@ -7,25 +7,25 @@ package controller.bank;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import constant.SystemConstant;
-import java.io.IOException;
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.util.List;
+import model.ThongKeGD;
+import service.IAccountService;
+
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.ThongKeGD;
-import service.IAccountService;
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.util.List;
 
 /**
- *
  * @author Tuong
  */
 @WebServlet(urlPatterns = {"/api-bank-account-statement"})
-public class AccountStatementAPI extends HttpServlet{
+public class AccountStatementAPI extends HttpServlet {
     @Inject
     IAccountService accountService;
 
@@ -34,17 +34,17 @@ public class AccountStatementAPI extends HttpServlet{
         ObjectMapper mapper = new ObjectMapper();
         request.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
-        
+
         String soTK = request.getParameter("soTK");
-        Timestamp tuNgay=null;
-        Timestamp denNgay=null;
+        Timestamp tuNgay = null;
+        Timestamp denNgay = null;
         try {
             tuNgay = new Timestamp(SystemConstant.yyyyMMdd.parse(request.getParameter("tuNgay")).getTime());
             denNgay = new Timestamp(SystemConstant.yyyyMMdd.parse(request.getParameter("denNgay")).getTime());
         } catch (ParseException ex) {
             ex.printStackTrace();
         }
-        
+
         List<ThongKeGD> trans = accountService.thongKeGD(request, soTK, tuNgay, denNgay);
         mapper.writeValue(response.getOutputStream(), trans);
     }

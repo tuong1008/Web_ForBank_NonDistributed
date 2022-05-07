@@ -6,23 +6,23 @@
 package service.impl;
 
 import dao.ICustomerDAO;
-import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.util.List;
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import model.KhachHang;
 import service.ICustomerService;
 
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.util.List;
+
 /**
- *
  * @author Tuong
  */
-public class CustomerService implements ICustomerService{
+public class CustomerService implements ICustomerService {
 
     @Inject
     ICustomerDAO customerDAO;
-    
+
     @Override
     public List<KhachHang> getAll(HttpServletRequest req) {
         return customerDAO.getAll(req);
@@ -52,5 +52,5 @@ public class CustomerService implements ICustomerService{
     public List<KhachHang> thongKeKH(HttpServletRequest req) {
         return customerDAO.thongKeKH(req);
     }
-    
+
 }

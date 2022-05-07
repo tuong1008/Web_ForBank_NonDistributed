@@ -6,17 +6,17 @@
 package dao.impl;
 
 import dao.IMoneyTransferDAO;
-import java.math.BigDecimal;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import mapper.MoneyTransferMapper;
 import model.GD_ChuyenTien;
 
+import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
+import java.util.List;
+
 /**
- *
  * @author Tuong
  */
-public class MoneyTransferDAO extends AbstractDAO<GD_ChuyenTien> implements IMoneyTransferDAO{
+public class MoneyTransferDAO extends AbstractDAO<GD_ChuyenTien> implements IMoneyTransferDAO {
 
     @Override
     public List<GD_ChuyenTien> getAll(HttpServletRequest req) {
@@ -25,8 +25,8 @@ public class MoneyTransferDAO extends AbstractDAO<GD_ChuyenTien> implements IMon
 
     @Override
     public String insertMoneyTransfer(HttpServletRequest req, String soTK_Chuyen, BigDecimal soTien, String soTK_Nhan, String maNV) {
-        return crudAction(req, true,true, "exec SP_INSERT_GD_CHUYENTIEN ?, ?, ?, ?",
+        return crudAction(req, true, true, "exec SP_INSERT_GD_CHUYENTIEN ?, ?, ?, ?",
                 soTK_Chuyen, soTien, soTK_Nhan, maNV);
     }
-    
+
 }
