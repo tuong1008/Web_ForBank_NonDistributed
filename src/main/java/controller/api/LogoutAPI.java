@@ -5,8 +5,8 @@
  */
 package controller.api;
 
-import java.io.IOException;
-import java.util.ResourceBundle;
+import service.IUserService;
+
 import javax.inject.Inject;
 import javax.json.Json;
 import javax.json.stream.JsonGenerator;
@@ -16,19 +16,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.User;
-import service.IUserService;
+import java.io.IOException;
+import java.util.ResourceBundle;
 
 /**
- *
  * @author Tuong
  */
 @WebServlet(urlPatterns = {"/api-logout"})
-public class LogoutAPI extends HttpServlet{
+public class LogoutAPI extends HttpServlet {
 
     @Inject
     IUserService userService;
-    
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("db");
@@ -38,13 +37,13 @@ public class LogoutAPI extends HttpServlet{
         session.setAttribute("password", resourceBundle.getString("password"));
 
         session.removeAttribute("userInfo");
-        
+
         JsonGenerator generator = Json.createGenerator(resp.getOutputStream());
-        
-            generator.writeStartObject()
-                    .write("message", "Đăng xuất thành công!")
-                    .writeEnd();
-            generator.close();
+
+        generator.writeStartObject()
+                .write("message", "Đăng xuất thành công!")
+                .writeEnd();
+        generator.close();
     }
-    
+
 }

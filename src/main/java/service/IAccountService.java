@@ -5,23 +5,28 @@
  */
 package service;
 
-import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import model.TaiKhoan;
 import model.ThongKeGD;
 
+import javax.servlet.http.HttpServletRequest;
+import java.sql.Timestamp;
+import java.util.List;
+
 /**
- *
  * @author Tuong
  */
 public interface IAccountService {
     List<TaiKhoan> getAll(HttpServletRequest req);
-    public TaiKhoan getOne(HttpServletRequest req, String soTK);
-    public TaiKhoan getByCMNDAndMaCN(HttpServletRequest req, String cmnd, String maCN);
-    public String deleteAccount(HttpServletRequest req, String soTK);
-    public List<ThongKeGD> thongKeGD(HttpServletRequest req, String soTK, Timestamp tuNgay, Timestamp denNgay);
-    public List<TaiKhoan> thongKeTK(HttpServletRequest req,String maCN, Timestamp tuNgay, Timestamp denNgay);
-    public List<TaiKhoan> thongKeTKAllServer(HttpServletRequest req, Timestamp tuNgay, Timestamp denNgay);
+
+    TaiKhoan getOne(HttpServletRequest req, String soTK);
+
+    TaiKhoan getByCMNDAndMaCN(HttpServletRequest req, String cmnd, String maCN);
+
+    String deleteAccount(HttpServletRequest req, String soTK);
+
+    List<ThongKeGD> thongKeGD(HttpServletRequest req, String soTK, Timestamp tuNgay, Timestamp denNgay);
+
+    List<TaiKhoan> thongKeTK(HttpServletRequest req, String maCN, Timestamp tuNgay, Timestamp denNgay);
+
+    List<TaiKhoan> thongKeTKAllServer(HttpServletRequest req, Timestamp tuNgay, Timestamp denNgay);
 }

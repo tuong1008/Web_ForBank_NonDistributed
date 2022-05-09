@@ -6,8 +6,11 @@
 package controller.bankBranch.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.IOException;
-import java.util.List;
+import model.GD_GoiRut;
+import model.User;
+import service.IDepositWithdrawService;
+import utils.HttpUtil;
+
 import javax.inject.Inject;
 import javax.json.Json;
 import javax.json.stream.JsonGenerator;
@@ -16,18 +19,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.GD_GoiRut;
-import model.User;
-
-import service.IDepositWithdrawService;
-import utils.HttpUtil;
+import java.io.IOException;
+import java.util.List;
 
 /**
- *
  * @author Tuong
  */
 @WebServlet(urlPatterns = {"/api-deposit-withdraw"})
-public class DepositWithdrawAPI extends HttpServlet{
+public class DepositWithdrawAPI extends HttpServlet {
     @Inject
     IDepositWithdrawService depositWithdrawService;
 
@@ -43,19 +42,19 @@ public class DepositWithdrawAPI extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-		resp.setContentType("application/json");
-		GD_GoiRut trans =  HttpUtil.of(req.getReader()).toModel(GD_GoiRut.class);
-                trans.setMaNV(((User) req.getSession().getAttribute("userInfo")).getUserName());
-                String messageAfterInsert = depositWithdrawService.insertDepositWithdraw(req, trans);
-		JsonGenerator generator = Json.createGenerator(resp.getOutputStream());
-        if (messageAfterInsert==null){
+        resp.setContentType("application/json");
+        GD_GoiRut trans = HttpUtil.of(req.getReader()).toModel(GD_GoiRut.class);
+        trans.setMaNV(((User) req.getSession().getAttribute("userInfo")).getUserName());
+        String messageAfterInsert = depositWithdrawService.insertDepositWithdraw(req, trans);
+        JsonGenerator generator = Json.createGenerator(resp.getOutputStream());
+        if (messageAfterInsert == null) {
             messageAfterInsert = "Thêm thành công!";
         }
-            generator.writeStartObject()
-                    .write("message", messageAfterInsert)
-                    .writeEnd();
-            generator.close();
+        generator.writeStartObject()
+                .write("message", messageAfterInsert)
+                .writeEnd();
+        generator.close();
     }
-    
-    
+
+
 }

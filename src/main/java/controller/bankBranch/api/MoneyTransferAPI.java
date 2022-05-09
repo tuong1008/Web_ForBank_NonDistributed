@@ -6,8 +6,11 @@
 package controller.bankBranch.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.IOException;
-import java.util.List;
+import model.GD_ChuyenTien;
+import model.User;
+import service.IMoneyTransferService;
+import utils.HttpUtil;
+
 import javax.inject.Inject;
 import javax.json.Json;
 import javax.json.stream.JsonGenerator;
@@ -16,17 +19,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.GD_ChuyenTien;
-import model.User;
-import service.IMoneyTransferService;
-import utils.HttpUtil;
+import java.io.IOException;
+import java.util.List;
 
 /**
- *
  * @author Tuong
  */
 @WebServlet(urlPatterns = {"/api-money-tranfer"})
-public class MoneyTransferAPI extends HttpServlet{
+public class MoneyTransferAPI extends HttpServlet {
     @Inject
     IMoneyTransferService moneyTransferService;
 
@@ -42,17 +42,17 @@ public class MoneyTransferAPI extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-		resp.setContentType("application/json");
-		GD_ChuyenTien trans =  HttpUtil.of(req.getReader()).toModel(GD_ChuyenTien.class);
-                trans.setMaNV(((User) req.getSession().getAttribute("userInfo")).getUserName());
+        resp.setContentType("application/json");
+        GD_ChuyenTien trans = HttpUtil.of(req.getReader()).toModel(GD_ChuyenTien.class);
+        trans.setMaNV(((User) req.getSession().getAttribute("userInfo")).getUserName());
         String messageAfterInsert = moneyTransferService.insertMoneyTransfer(req, trans);
-		JsonGenerator generator = Json.createGenerator(resp.getOutputStream());
-        if (messageAfterInsert==null){
+        JsonGenerator generator = Json.createGenerator(resp.getOutputStream());
+        if (messageAfterInsert == null) {
             messageAfterInsert = "Thêm thành công!";
         }
-            generator.writeStartObject()
-                    .write("message", messageAfterInsert)
-                    .writeEnd();
-            generator.close();
+        generator.writeStartObject()
+                .write("message", messageAfterInsert)
+                .writeEnd();
+        generator.close();
     }
 }

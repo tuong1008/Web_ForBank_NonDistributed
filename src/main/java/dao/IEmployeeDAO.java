@@ -5,17 +5,23 @@
  */
 package dao;
 
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import model.NhanVien;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
 public interface IEmployeeDAO extends GenericDAO<NhanVien> {
-    public List<NhanVien> getAll(HttpServletRequest req);
-    public NhanVien getOne(HttpServletRequest req, String maNV);
-    public NhanVien getBySDTAndMaCN(HttpServletRequest req, String soDT, String maCN);
-    String insertEmployee(HttpServletRequest req, String ho, String ten, String diaChi, String phai, 
-                String soDT, String maCN, String pass, String role);
-    String updateEmployee(HttpServletRequest req, String maNV, String ho, String ten, String diaChi, String phai, 
-                String soDT);
+    List<NhanVien> getAll(HttpServletRequest req);
+
+    NhanVien getOne(HttpServletRequest req, String maNV);
+
+    NhanVien getBySDTAndMaCN(HttpServletRequest req, String soDT, String maCN);
+
+    String insertEmployee(HttpServletRequest req, String ho, String ten, String diaChi, String phai,
+                          String soDT, String maCN, String pass, String role);
+
+    String updateEmployee(HttpServletRequest req, String maNV, String ho, String ten, String diaChi, String phai,
+                          String soDT);
+
     String deleteEmployee(HttpServletRequest req, String maNV);
 }

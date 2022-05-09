@@ -5,17 +5,16 @@
  */
 package service;
 
-import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import model.GD_ChuyenTien;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
 /**
- *
  * @author Tuong
  */
 public interface IMoneyTransferService {
     List<GD_ChuyenTien> getAll(HttpServletRequest req);
+
     String insertMoneyTransfer(HttpServletRequest req, GD_ChuyenTien trans);
 }

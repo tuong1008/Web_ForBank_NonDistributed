@@ -5,22 +5,16 @@
  */
 package filter;
 
-import java.io.IOException;
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
- *
  * @author Tuong
  */
-public class CorsFilter implements Filter{
-    
+public class CorsFilter implements Filter {
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
     }
@@ -46,10 +40,10 @@ public class CorsFilter implements Filter{
         // pass the request along the filter chain
         filterChain.doFilter(request, servletResponse);
     }
-    
+
     @Override
     public void destroy() {
-        
+
     }
-    
+
 }

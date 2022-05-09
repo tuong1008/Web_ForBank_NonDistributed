@@ -5,7 +5,7 @@
  */
 package model;
 
-public class ChiNhanh{
+public class ChiNhanh {
     private String maCN;
     private String tenCN;
     private String diaChi;
@@ -15,32 +15,32 @@ public class ChiNhanh{
         return maCN;
     }
 
-    public String getTenCN() {
-        return tenCN;
-    }
-
-    public String getDiaChi() {
-        return diaChi;
-    }
-
-    public String getSoDT() {
-        return soDT;
-    }
-
     public void setMaCN(String maCN) {
         this.maCN = maCN;
+    }
+
+    public String getTenCN() {
+        return tenCN;
     }
 
     public void setTenCN(String tenCN) {
         this.tenCN = tenCN;
     }
 
+    public String getDiaChi() {
+        return diaChi;
+    }
+
     public void setDiaChi(String diaChi) {
         this.diaChi = diaChi;
+    }
+
+    public String getSoDT() {
+        return soDT;
     }
 
     public void setSoDT(String soDT) {
         this.soDT = soDT;
     }
-    
+
 }

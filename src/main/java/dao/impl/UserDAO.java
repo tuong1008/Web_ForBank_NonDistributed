@@ -6,35 +6,34 @@
 package dao.impl;
 
 import dao.IUserDAO;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import mapper.UserMapper;
 import model.User;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.List;
+
 /**
- *
  * @author Tuong
  */
-public class UserDAO extends AbstractDAO<User> implements IUserDAO{
+public class UserDAO extends AbstractDAO<User> implements IUserDAO {
 
     @Override
     public User login(HttpServletRequest req, String user, String password) {
         HttpSession session = req.getSession();
         session.setAttribute("user", user);
         session.setAttribute("password", password);
-        List<User> users= query(req, "exec dbo.SP_DANGNHAP ?", new UserMapper(), user);
-        if (users==null){
+        List<User> users = query(req, "exec dbo.SP_DANGNHAP ?", new UserMapper(), user);
+        if (users == null) {
             return null;
-        }
-        else{
+        } else {
             return users.get(0);
         }
     }
 
     @Override
     public String insertLogin(HttpServletRequest req, String loginName, String password, String userName, String role) {
-        return crudAction(req, true,false, "exec dbo.SP_TAOLOGIN ?,?,?,?", loginName, password, userName, role);
+        return crudAction(req, true, false, "exec dbo.SP_TAOLOGIN ?,?,?,?", loginName, password, userName, role);
     }
 
     @Override
@@ -44,9 +43,8 @@ public class UserDAO extends AbstractDAO<User> implements IUserDAO{
 
     @Override
     public String updatePassword(HttpServletRequest req, String oldPassword, String password, String maNV) {
-        return crudAction(req, false, true, "exec sp_password ?,?,?",oldPassword, password, maNV);
+        return crudAction(req, false, true, "exec sp_password ?,?,?", oldPassword, password, maNV);
     }
 
-    
-    
+
 }

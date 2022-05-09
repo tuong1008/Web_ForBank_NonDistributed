@@ -5,15 +5,16 @@
  */
 package dao;
 
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import model.ChiNhanh;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
 /**
- *
  * @author Tuong
  */
-public interface IBranchDAO extends GenericDAO<ChiNhanh>{
-    public List<ChiNhanh> getAll(HttpServletRequest req);
-    public List<ChiNhanh> findOther(HttpServletRequest req, String currentSub);
+public interface IBranchDAO extends GenericDAO<ChiNhanh> {
+    List<ChiNhanh> getAll(HttpServletRequest req);
+
+    List<ChiNhanh> findOther(HttpServletRequest req, String currentSub);
 }

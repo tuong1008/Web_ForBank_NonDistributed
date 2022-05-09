@@ -13,3 +13,4 @@ out/
 
 # all
 node_modules
+*.properties

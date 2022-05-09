@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 /**
- *
  * @author Tuong
  */
 public class ThongKeGD {
@@ -23,41 +22,41 @@ public class ThongKeGD {
         return balanceBefore;
     }
 
-    public Timestamp getNgayGD() {
-        return ngayGD;
-    }
-
-    public String getLoaiGD() {
-        return loaiGD;
-    }
-
-    public BigDecimal getSoTien() {
-        return soTien;
-    }
-
-    public BigDecimal getBalanceAfter() {
-        return balanceAfter;
-    }
-
     public void setBalanceBefore(BigDecimal balanceBefore) {
         this.balanceBefore = balanceBefore;
+    }
+
+    public Timestamp getNgayGD() {
+        return ngayGD;
     }
 
     public void setNgayGD(Timestamp ngayGD) {
         this.ngayGD = ngayGD;
     }
 
+    public String getLoaiGD() {
+        return loaiGD;
+    }
+
     public void setLoaiGD(String loaiGD) {
         this.loaiGD = loaiGD;
+    }
+
+    public BigDecimal getSoTien() {
+        return soTien;
     }
 
     public void setSoTien(BigDecimal soTien) {
         this.soTien = soTien;
     }
 
+    public BigDecimal getBalanceAfter() {
+        return balanceAfter;
+    }
+
     public void setBalanceAfter(BigDecimal balanceAfter) {
         this.balanceAfter = balanceAfter;
     }
-    
-    
+
+
 }

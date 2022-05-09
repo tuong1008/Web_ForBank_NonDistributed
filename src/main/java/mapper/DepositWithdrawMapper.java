@@ -5,15 +5,15 @@
  */
 package mapper;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import model.GD_GoiRut;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
- *
  * @author Tuong
  */
-public class DepositWithdrawMapper implements RowMapper<GD_GoiRut>{
+public class DepositWithdrawMapper implements RowMapper<GD_GoiRut> {
     @Override
     public GD_GoiRut mapRow(ResultSet rs) {
         try {

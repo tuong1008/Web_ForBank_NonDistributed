@@ -5,12 +5,12 @@
  */
 package mapper;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import model.NhanVien;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
- *
  * @author Tuong
  */
 public class EmployeeMapper implements RowMapper<NhanVien> {

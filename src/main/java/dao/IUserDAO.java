@@ -5,16 +5,19 @@
  */
 package dao;
 
-import javax.servlet.http.HttpServletRequest;
 import model.User;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
- *
  * @author Tuong
  */
-public interface IUserDAO extends GenericDAO<User>{
-    public User login(HttpServletRequest req, String user, String password);
-    public User getOne(HttpServletRequest req, String user);
-    public String insertLogin(HttpServletRequest req, String loginName, String password, String userName, String role);
-    public String updatePassword(HttpServletRequest req, String oldPassword, String password, String maNV);
+public interface IUserDAO extends GenericDAO<User> {
+    User login(HttpServletRequest req, String user, String password);
+
+    User getOne(HttpServletRequest req, String user);
+
+    String insertLogin(HttpServletRequest req, String loginName, String password, String userName, String role);
+
+    String updatePassword(HttpServletRequest req, String oldPassword, String password, String maNV);
 }

@@ -6,7 +6,6 @@
 package model;
 
 /**
- *
  * @author Tuong
  */
 public class User {
@@ -22,38 +21,37 @@ public class User {
         return user;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    
-    
+
     public String getUserName() {
         return userName;
-    }
-
-    public String getHoTen() {
-        return hoTen;
-    }
-
-    public String getTenNhom() {
-        return tenNhom;
     }
 
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
+    public String getHoTen() {
+        return hoTen;
+    }
+
     public void setHoTen(String hoTen) {
         this.hoTen = hoTen;
+    }
+
+    public String getTenNhom() {
+        return tenNhom;
     }
 
     public void setTenNhom(String tenNhom) {
@@ -67,7 +65,6 @@ public class User {
     public void setMaCN(String maCN) {
         this.maCN = maCN;
     }
-    
-    
-    
+
+
 }

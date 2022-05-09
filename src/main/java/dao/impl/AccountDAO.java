@@ -6,16 +6,16 @@
 package dao.impl;
 
 import dao.IAccountDAO;
-import java.sql.Timestamp;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import mapper.AccountMapper;
 import mapper.ThongKeGDMapper;
 import model.TaiKhoan;
 import model.ThongKeGD;
 
+import javax.servlet.http.HttpServletRequest;
+import java.sql.Timestamp;
+import java.util.List;
+
 /**
- *
  * @author Tuong
  */
 public class AccountDAO extends AbstractDAO<TaiKhoan> implements IAccountDAO {
@@ -27,12 +27,12 @@ public class AccountDAO extends AbstractDAO<TaiKhoan> implements IAccountDAO {
 
     @Override
     public String deleteAccount(HttpServletRequest req, String soTK) {
-        return crudAction(req, true,true, "exec dbo.SP_DELETE_TAIKHOAN ?;", soTK);
+        return crudAction(req, true, true, "exec dbo.SP_DELETE_TAIKHOAN ?;", soTK);
     }
 
     @Override
     public TaiKhoan getByCMNDAndMaCN(HttpServletRequest req, String cmnd, String maCN) {
-        return query(req, "select * from TaiKhoan where CMND=? and maCN = ?", new AccountMapper(),cmnd, maCN).get(0);
+        return query(req, "select * from TaiKhoan where CMND=? and maCN = ?", new AccountMapper(), cmnd, maCN).get(0);
     }
 
     @Override
@@ -46,8 +46,8 @@ public class AccountDAO extends AbstractDAO<TaiKhoan> implements IAccountDAO {
     }
 
     @Override
-    public List<TaiKhoan> thongKeTK(HttpServletRequest req,String maCN, Timestamp tuNgay, Timestamp denNgay) {
-        return query(req, "select * from TaiKhoan where maCN=? and ngayMoTK > ? and ngayMoTK < ?", new AccountMapper(),maCN, tuNgay, denNgay);
+    public List<TaiKhoan> thongKeTK(HttpServletRequest req, String maCN, Timestamp tuNgay, Timestamp denNgay) {
+        return query(req, "select * from TaiKhoan where maCN=? and ngayMoTK > ? and ngayMoTK < ?", new AccountMapper(), maCN, tuNgay, denNgay);
     }
 
     @Override
@@ -55,6 +55,5 @@ public class AccountDAO extends AbstractDAO<TaiKhoan> implements IAccountDAO {
         return query(req, "select * from TaiKhoan where ngayMoTK > ? and ngayMoTK < ?", new AccountMapper(), tuNgay, denNgay);
     }
 
-    
-    
+
 }

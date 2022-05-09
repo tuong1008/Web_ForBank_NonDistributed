@@ -6,18 +6,18 @@
 package service.impl;
 
 import dao.IMoneyTransferDAO;
-import java.util.List;
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import model.GD_ChuyenTien;
 import service.IMoneyTransferService;
 
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
 /**
- *
  * @author Tuong
  */
-public class MoneyTransferService implements IMoneyTransferService{
-    
+public class MoneyTransferService implements IMoneyTransferService {
+
     @Inject
     IMoneyTransferDAO moneyTransferDAO;
 
@@ -31,5 +31,5 @@ public class MoneyTransferService implements IMoneyTransferService{
         return moneyTransferDAO.insertMoneyTransfer(req, trans.getSoTK_Chuyen(),
                 trans.getSoTien(), trans.getSoTK_Nhan(), trans.getMaNV());
     }
-    
+
 }

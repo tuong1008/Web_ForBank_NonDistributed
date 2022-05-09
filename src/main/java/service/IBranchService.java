@@ -5,15 +5,16 @@
  */
 package service;
 
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import model.ChiNhanh;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
 /**
- *
  * @author Tuong
  */
 public interface IBranchService {
     List<ChiNhanh> getAll(HttpServletRequest req);
+
     List<ChiNhanh> findOther(HttpServletRequest req, String currentSub);
 }

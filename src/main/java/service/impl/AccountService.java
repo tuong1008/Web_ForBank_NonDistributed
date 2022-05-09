@@ -6,23 +6,23 @@
 package service.impl;
 
 import dao.IAccountDAO;
-import java.sql.Timestamp;
-import java.util.List;
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import model.TaiKhoan;
 import model.ThongKeGD;
 import service.IAccountService;
 
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import java.sql.Timestamp;
+import java.util.List;
+
 /**
- *
  * @author Tuong
  */
-public class AccountService implements IAccountService{
+public class AccountService implements IAccountService {
 
     @Inject
     IAccountDAO accountDAO;
-    
+
     @Override
     public List<TaiKhoan> getAll(HttpServletRequest req) {
         return accountDAO.getAll(req);
@@ -30,7 +30,7 @@ public class AccountService implements IAccountService{
 
     @Override
     public String deleteAccount(HttpServletRequest req, String soTK) {
-        return  accountDAO.deleteAccount(req, soTK);
+        return accountDAO.deleteAccount(req, soTK);
     }
 
     @Override
@@ -44,18 +44,18 @@ public class AccountService implements IAccountService{
     }
 
     @Override
-    public List<ThongKeGD> thongKeGD(HttpServletRequest req, String soTK, Timestamp tuNgay, Timestamp denNgay){
+    public List<ThongKeGD> thongKeGD(HttpServletRequest req, String soTK, Timestamp tuNgay, Timestamp denNgay) {
         return accountDAO.thongKeGD(req, soTK, tuNgay, denNgay);
     }
 
     @Override
-    public List<TaiKhoan> thongKeTK(HttpServletRequest req,String maCN, Timestamp tuNgay, Timestamp denNgay) {
-        return accountDAO.thongKeTK(req,maCN, tuNgay, denNgay);
+    public List<TaiKhoan> thongKeTK(HttpServletRequest req, String maCN, Timestamp tuNgay, Timestamp denNgay) {
+        return accountDAO.thongKeTK(req, maCN, tuNgay, denNgay);
     }
 
     @Override
     public List<TaiKhoan> thongKeTKAllServer(HttpServletRequest req, Timestamp tuNgay, Timestamp denNgay) {
         return accountDAO.thongKeTKAllServer(req, tuNgay, denNgay);
     }
-    
+
 }

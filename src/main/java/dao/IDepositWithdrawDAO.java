@@ -5,18 +5,18 @@
  */
 package dao;
 
-import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import model.GD_GoiRut;
 
+import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
+import java.util.List;
+
 /**
- *
  * @author Tuong
  */
-public interface IDepositWithdrawDAO extends GenericDAO<GD_GoiRut>{
-    public List<GD_GoiRut> getAll(HttpServletRequest req);
+public interface IDepositWithdrawDAO extends GenericDAO<GD_GoiRut> {
+    List<GD_GoiRut> getAll(HttpServletRequest req);
+
     String insertDepositWithdraw(HttpServletRequest req, String soTK, String loaiGD,
-                                BigDecimal soTien, String maNV);
+                                 BigDecimal soTien, String maNV);
 }

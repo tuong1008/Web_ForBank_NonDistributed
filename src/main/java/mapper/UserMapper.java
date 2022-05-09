@@ -5,15 +5,15 @@
  */
 package mapper;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import model.User;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
- *
  * @author Tuong
  */
-public class UserMapper implements RowMapper<User>{
+public class UserMapper implements RowMapper<User> {
 
     @Override
     public User mapRow(ResultSet rs) {
@@ -28,5 +28,5 @@ public class UserMapper implements RowMapper<User>{
             return null;
         }
     }
-    
+
 }
