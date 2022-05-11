@@ -29,4 +29,6 @@ public interface IAccountDAO extends GenericDAO<TaiKhoan> {
     List<TaiKhoan> thongKeTK(HttpServletRequest req, String maCN, Timestamp tuNgay, Timestamp denNgay);
 
     List<TaiKhoan> thongKeTKAllServer(HttpServletRequest req, Timestamp tuNgay, Timestamp denNgay);
+
+    List<TaiKhoan> getAllTkByCMND(HttpServletRequest req, String cmnd);
 }
