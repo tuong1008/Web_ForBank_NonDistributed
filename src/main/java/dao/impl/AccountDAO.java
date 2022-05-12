@@ -55,5 +55,8 @@ public class AccountDAO extends AbstractDAO<TaiKhoan> implements IAccountDAO {
         return query(req, "select * from TaiKhoan where ngayMoTK > ? and ngayMoTK < ?", new AccountMapper(), tuNgay, denNgay);
     }
 
-
+    @Override
+    public List<TaiKhoan> getAllTkByCMND(HttpServletRequest req, String cmnd) {
+        return query(req, "select * from TaiKhoan where cmnd = ?", new AccountMapper(), cmnd);
+    }
 }
