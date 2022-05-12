@@ -58,4 +58,8 @@ public class AccountService implements IAccountService {
         return accountDAO.thongKeTKAllServer(req, tuNgay, denNgay);
     }
 
+    @Override
+    public List<TaiKhoan> getAllTkByCMND(HttpServletRequest req, String cmnd) {
+        return accountDAO.getAllTkByCMND(req, cmnd);
+    }
 }
