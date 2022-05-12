@@ -78,11 +78,9 @@
     </dependencies>
 
     <build>
-<<<<<<< HEAD
-    
-=======
+
         <finalName>web_forbank</finalName>
->>>>>>> f942b0774f5395b2dcbf904aa122103fba30c49e
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
