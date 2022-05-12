@@ -28,18 +28,22 @@ public class AbstractDAO<T> implements GenericDAO<T> {
             String url = resourceBundle.getString("url");
             String serverName = resourceBundle.getString("serverName");
             String databaseName = resourceBundle.getString("databaseName");
+
+            System.out.println("connection string: " + url + serverName + databaseName + user + password);
+
             return DriverManager.getConnection(url + serverName + databaseName, user, password);
         } catch (ClassNotFoundException | SQLException e) {
             return null;
         }
     }
+
     public static Connection getConnection() {
         try {
             Class.forName(resourceBundle.getString("driverName"));
             String url = resourceBundle.getString("url");
             String serverName = resourceBundle.getString("serverName");
             String databaseName = resourceBundle.getString("databaseName");
-            return DriverManager.getConnection(url + serverName + databaseName,"minhto", "minhto123");
+            return DriverManager.getConnection(url + serverName + databaseName, "minhto", "minhto123");
         } catch (ClassNotFoundException | SQLException e) {
             return null;
         }
@@ -75,14 +79,16 @@ public class AbstractDAO<T> implements GenericDAO<T> {
         ResultSet resultSet = null;
         try {
             HttpSession session = req.getSession();
-            connection = getConnection();
+            connection = getConnection(session.getAttribute("user").toString(),
+                    session.getAttribute("password").toString());
+
             statement = connection.prepareStatement(sql);
             setParameter(statement, parameters);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 results.add(rowMapper.mapRow(resultSet));
             }
-             return results;
+            return results;
         } catch (SQLException e) {
             return null;
         } finally {
@@ -100,86 +106,56 @@ public class AbstractDAO<T> implements GenericDAO<T> {
                 return null;
             }
         }
-//=======
-//        Connection connection = null;
-//        PreparedStatement statement = null;
-//        ResultSet resultSet = null;
-//        try {
-//            HttpSession session = req.getSession();
-//            connection = getConnection(
-//                    session.getAttribute("serverName").toString(),
-//                    session.getAttribute("user").toString(),
-//                    session.getAttribute("password").toString());
-//            statement = connection.prepareStatement(sql);
-//            setParameter(statement, parameters);
-//            resultSet = statement.executeQuery();
-//            while (resultSet.next()) {
-//                results.add(rowMapper.mapRow(resultSet));
-//            }
-//            return results;
-//        } catch (SQLException e) {
-//            return null;
-//        } finally {
-//            try {
-//                if (connection != null) {
-//                    connection.close();
-//                }
-//                if (statement != null) {
-//                    statement.close();
-//                }
-//                if (resultSet != null) {
-//                    resultSet.close();
-//                }
-//            } catch (SQLException e) {
-//                return null;
-//            }
-//        }
-//>>>>>>> 8340cb25ff7beb0f52e3761254155a14dee18ed5
     }
+
     @Override
-	public Long insert(HttpServletRequest req, boolean isStoredProcedured, boolean withTransaction, String sql, Object... parameters) {
-    	   
-    	Connection connection = null;
-		PreparedStatement statement = null;
-		ResultSet resultSet = null;
-		try {
-			Long id = null;
-			connection = getConnection();
-			connection.setAutoCommit(false);
-			statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			setParameter(statement, parameters);
-			statement.executeUpdate();
-			resultSet = statement.getGeneratedKeys();
-			if (resultSet.next()) {
-				id = resultSet.getLong(1);
-			}
-			connection.commit();
-			return id;
-		} catch (SQLException e) {
-			if (connection != null) {
-				try {
-					connection.rollback();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-			}
-		} finally {
-			try {
-				if (connection != null) {
-					connection.close();
-				}
-				if (statement != null) {
-					statement.close();
-				}
-				if (resultSet != null) {
-					resultSet.close();
-				}
-			} catch (SQLException e2) {
-				e2.printStackTrace();
-			}
-		}
-		return null;
-	}
+    public Long insert(HttpServletRequest req, boolean isStoredProcedured, boolean withTransaction, String sql, Object... parameters) {
+
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            Long id = null;
+            HttpSession session = req.getSession();
+            connection = getConnection(session.getAttribute("user").toString(),
+                    session.getAttribute("password").toString());
+
+            connection.setAutoCommit(false);
+            statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            setParameter(statement, parameters);
+            statement.executeUpdate();
+            resultSet = statement.getGeneratedKeys();
+
+            if (resultSet.next()) {
+                id = resultSet.getLong(1);
+            }
+            connection.commit();
+            return id;
+        } catch (SQLException e) {
+            if (connection != null) {
+                try {
+                    connection.rollback();
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+                if (statement != null) {
+                    statement.close();
+                }
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+            } catch (SQLException e2) {
+                e2.printStackTrace();
+            }
+        }
+        return null;
+    }
 
     @Override
     public String crudAction(HttpServletRequest req, boolean isStoredProcedured, boolean withTransaction, String sql, Object... parameters) {
@@ -187,7 +163,9 @@ public class AbstractDAO<T> implements GenericDAO<T> {
         PreparedStatement statement = null;
         try {
             HttpSession session = req.getSession();
-            connection = getConnection();
+            connection = getConnection(session.getAttribute("user").toString(),
+                    session.getAttribute("password").toString());
+
             if (withTransaction) connection.setAutoCommit(false);
             statement = connection.prepareStatement(sql);
             setParameter(statement, parameters);
@@ -257,9 +235,10 @@ public class AbstractDAO<T> implements GenericDAO<T> {
             }
         }
     }
-	@Override
-	public String crud(HttpServletRequest req, boolean isStoredProcedured, boolean withTransaction, String sql,
-			Object... parameters) {
-	return null;
-	}
+
+    @Override
+    public String crud(HttpServletRequest req, boolean isStoredProcedured, boolean withTransaction, String sql,
+                       Object... parameters) {
+        return null;
+    }
 }

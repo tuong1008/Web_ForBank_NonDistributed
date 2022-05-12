@@ -5,7 +5,6 @@
  */
 package mapper;
 
-import model.TaiKhoan;
 import model.UserAccount;
 
 import java.sql.ResultSet;
@@ -19,12 +18,12 @@ public class UserAccountMapper implements RowMapper<UserAccount> {
     @Override
     public UserAccount mapRow(ResultSet rs) {
         try {
-        	UserAccount user=new UserAccount();
-        	user.setId(rs.getInt("id"));
-        	user.setTaiKhoan(rs.getString("TAIKHOAN"));
-        	user.setMatKhau(rs.getString("MATKHAU"));
-        	user.setKhachHangID(rs.getString("KHACHHANGID"));
-        	user.setImageUrl(rs.getString("IMAGEURL"));
+            UserAccount user = new UserAccount();
+            user.setId(rs.getInt("id"));
+            user.setTaiKhoan(rs.getString("TAIKHOAN"));
+            user.setMatKhau(rs.getString("MATKHAU"));
+            user.setKhachHangID(rs.getString("KHACHHANGID"));
+            user.setImageUrl(rs.getString("IMAGEURL"));
             return user;
         } catch (SQLException e) {
             return null;

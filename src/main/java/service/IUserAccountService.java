@@ -5,24 +5,20 @@
  */
 package service;
 
-import model.TaiKhoan;
-import model.ThongKeGD;
 import model.UserAccount;
 
 import javax.servlet.http.HttpServletRequest;
-import java.sql.Timestamp;
-import java.util.List;
 
 /**
  * @author Tuong
  */
 public interface IUserAccountService {
-    
-	UserAccount login(HttpServletRequest req, String user, String password);
 
-	UserAccount getOne(HttpServletRequest req, String user);
+    UserAccount login(HttpServletRequest req, String user, String password);
 
-    String insert(HttpServletRequest req,  String userName, String password,String image,String khachHangID);
+    UserAccount getOne(HttpServletRequest req, String user);
 
-    String update(HttpServletRequest req,  String userName, String password,String image);
+    String insert(HttpServletRequest req, String userName, String password, String image, String khachHangID);
+
+    String update(HttpServletRequest req, String userName, String password, String image);
 }
