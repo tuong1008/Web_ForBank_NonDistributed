@@ -9,6 +9,7 @@ services:
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=Admin1234.
+      - TZ=Asia/Bangkok
     ports:
       - "1433:1433"
     networks:
