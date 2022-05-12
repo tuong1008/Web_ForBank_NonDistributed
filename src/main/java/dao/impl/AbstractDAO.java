@@ -37,18 +37,6 @@ public class AbstractDAO<T> implements GenericDAO<T> {
         }
     }
 
-    public static Connection getConnection() {
-        try {
-            Class.forName(resourceBundle.getString("driverName"));
-            String url = resourceBundle.getString("url");
-            String serverName = resourceBundle.getString("serverName");
-            String databaseName = resourceBundle.getString("databaseName");
-            return DriverManager.getConnection(url + serverName + databaseName, "minhto", "minhto123");
-        } catch (ClassNotFoundException | SQLException e) {
-            return null;
-        }
-    }
-
     public static void setParameter(PreparedStatement statement, Object... parameters) {
         try {
             for (int i = 0; i < parameters.length; i++) {
