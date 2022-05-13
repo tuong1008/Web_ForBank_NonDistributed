@@ -12,7 +12,7 @@ export default class extends AbstractView {
             let formData = new FormData(formLogin);
             console.log(formData.get("userName"));
             console.log(formData.get("password"));
-            let url = "http://localhost:8080/Web_ForBank/api-user-login";
+            let url = "http://localhost:8080/web_forbank/api-user-login";
             fetch(url, {
                 credentials: 'include',
                 headers: {
@@ -51,7 +51,7 @@ export default class extends AbstractView {
     }
 
     logoutEvent(){
-        let url = "http://localhost:8080/Web_ForBank/api-logout";
+        let url = "http://localhost:8080/web_forbank/api-logout";
         fetch(url, {credentials: 'include'})
             .then(function (response) {
                 return response.json();
