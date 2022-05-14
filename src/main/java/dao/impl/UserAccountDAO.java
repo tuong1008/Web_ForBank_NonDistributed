@@ -35,5 +35,10 @@ public class UserAccountDAO extends AbstractDAO<UserAccount> implements IUserAcc
         // TODO Auto-generated method stub
         return null;
     }
+    
+    @Override
+    public String updateImage(HttpServletRequest req, String imageUrl, String userId){
+        return crudAction(req, false, true, "UPDATE UserAccount SET IMAGEURL = ? WHERE id=?", imageUrl, userId);
+    }
 
 }

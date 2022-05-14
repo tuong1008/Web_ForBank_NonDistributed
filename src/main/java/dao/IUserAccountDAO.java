@@ -12,4 +12,6 @@ public interface IUserAccountDAO {
     String insert(HttpServletRequest req, String userName, String password, String image, String khachHangID);
 
     String update(HttpServletRequest req, String userName, String password, String image);
+
+    String updateImage(HttpServletRequest req, String imageUrl, String userId);
 }

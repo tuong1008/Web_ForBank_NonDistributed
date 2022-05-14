@@ -36,4 +36,10 @@ public class UserAccountService implements IUserAccountService {
         return null;
     }
 
+    @Override
+    public String updateImage(HttpServletRequest req, String imageUrl, String userId) {
+        // TODO Auto-generated method stub
+        return userAccountDAO.updateImage(req, imageUrl, userId);
+    }
+
 }

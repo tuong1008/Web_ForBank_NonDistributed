@@ -4,20 +4,14 @@
     Author     : Tuong
 --%>
 
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <title>File Upload</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>The Bank</title>
     </head>
     <body>
-        <form method="POST" action="test" enctype="multipart/form-data" >
-            File:
-            <input type="file" name="picture" id="file" /> <br/>
-            Destination:
-            <input type="text" value="/tmp" name="folderToSave"/>
-            </br>
-            <input type="submit" value="Upload" name="upload" id="upload" />
-        </form>
+<h2>Web Service Running!</h2>
     </body>
 </html>

@@ -16,11 +16,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.json.stream.JsonGenerator;
 
 /**
  * Servlet implementation class UserAPI
@@ -90,6 +92,33 @@ public class UserAPI extends HttpServlet {
         UserAccount userAccount = userAccountService.getOne(request, taiKhoan);
         mapper.writeValue(response.getOutputStream(), userAccount);
 
+    }
+
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException{
+        ObjectMapper mapper = new ObjectMapper();
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
+
+        JsonReader rdr = Json.createReader(request.getInputStream());
+        JsonObject obj = rdr.readObject();
+
+        String imageUrl = obj.getJsonString("imageUrl").getString();
+        String userId = obj.getJsonString("userId").getString();
+
+        String message =userAccountService.updateImage(request, imageUrl, userId);
+
+
+        if (message == null) {
+            message = "Đổi hình thành công!";
+        }
+
+
+        JsonGenerator generator = Json.createGenerator(response.getOutputStream());
+
+        generator.writeStartObject()
+                .write("message", message)
+                .writeEnd();
+        generator.close();
     }
 
 }
