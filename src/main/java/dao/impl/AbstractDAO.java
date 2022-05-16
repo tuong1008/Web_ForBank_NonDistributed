@@ -29,8 +29,6 @@ public class AbstractDAO<T> implements GenericDAO<T> {
             String serverName = resourceBundle.getString("serverName");
             String databaseName = resourceBundle.getString("databaseName");
 
-            System.out.println("connection string: " + url + serverName + databaseName + user + password);
-
             return DriverManager.getConnection(url + serverName + databaseName, user, password);
         } catch (ClassNotFoundException | SQLException e) {
             return null;
@@ -197,10 +195,12 @@ public class AbstractDAO<T> implements GenericDAO<T> {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
+
         try {
             HttpSession session = req.getSession();
             connection = getConnection(session.getAttribute("user").toString(),
                     session.getAttribute("password").toString());
+
             statement = connection.prepareStatement(sql);
             setParameter(statement, parameters);
             resultSet = statement.executeQuery();
@@ -219,7 +219,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
                     resultSet.close();
                 }
             } catch (SQLException e) {
-                return null;
+                e.printStackTrace();
             }
         }
     }
