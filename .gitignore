@@ -11,6 +11,11 @@ target/
 .idea
 out/
 
+# Eclipse
+.settings/
+.project
+.classpath
+
 # all
 node_modules
 *.properties
