@@ -11,7 +11,7 @@ In project directory,
 
 install backend
 ```bash
-docker build -t bank-backend-docker
+docker build -t bank-backend-docker .
 docker compose up
 ```
 install frontend
