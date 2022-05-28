@@ -24,6 +24,7 @@ public class ThongKeGDMapper implements RowMapper<ThongKeGD> {
             tran.setLoaiGD(rs.getString("loaigd"));
             tran.setSoTien(rs.getBigDecimal("sotien"));
             tran.setBalanceAfter(rs.getBigDecimal("balanceafter"));
+            tran.setSource(rs.getString("otherTk"));
             return tran;
         } catch (SQLException e) {
             return null;

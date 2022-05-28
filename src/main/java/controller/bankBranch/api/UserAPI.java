@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
+import javax.json.stream.JsonGenerator;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +23,6 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.json.stream.JsonGenerator;
 
 /**
  * Servlet implementation class UserAPI
@@ -55,7 +55,6 @@ public class UserAPI extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
         ObjectMapper mapper = new ObjectMapper();
         request.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
@@ -94,7 +93,7 @@ public class UserAPI extends HttpServlet {
 
     }
 
-    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException{
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         request.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
@@ -105,13 +104,11 @@ public class UserAPI extends HttpServlet {
         String imageUrl = obj.getJsonString("imageUrl").getString();
         String userId = obj.getJsonString("userId").getString();
 
-        String message =userAccountService.updateImage(request, imageUrl, userId);
-
+        String message = userAccountService.updateImage(request, imageUrl, userId);
 
         if (message == null) {
             message = "Đổi hình thành công!";
         }
-
 
         JsonGenerator generator = Json.createGenerator(response.getOutputStream());
 
@@ -120,5 +117,4 @@ public class UserAPI extends HttpServlet {
                 .writeEnd();
         generator.close();
     }
-
 }

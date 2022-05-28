@@ -36,7 +36,6 @@ public class AuthenticationAPI extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
         ObjectMapper mapper = new ObjectMapper();
         request.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
@@ -52,14 +51,12 @@ public class AuthenticationAPI extends HttpServlet {
         UserAccount user = userAccountService.login(request, taiKhoan, matKhau);
 
         mapper.writeValue(response.getOutputStream(), user);
-
     }
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
         doGet(request, response);
     }
 

@@ -12,6 +12,7 @@ import java.sql.Timestamp;
  * @author Tuong
  */
 public class ThongKeGD {
+    String source;
     BigDecimal balanceBefore;
     Timestamp ngayGD;
     String loaiGD;
@@ -58,5 +59,11 @@ public class ThongKeGD {
         this.balanceAfter = balanceAfter;
     }
 
+    public String getSource() {
+        return source;
+    }
 
+    public void setSource(String source) {
+        this.source = source;
+    }
 }
