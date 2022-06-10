@@ -15,6 +15,8 @@ services:
     networks:
       my_network:
         ipv4_address: 172.20.0.2
+    volumes:
+      - dbdata:/var/opt/mssql/data
   backend:
     image: bank-backend-docker
     depends_on:
@@ -24,3 +26,5 @@ services:
     networks:
       my_network:
         ipv4_address: 172.20.0.3
+volumes:
+  dbdata:

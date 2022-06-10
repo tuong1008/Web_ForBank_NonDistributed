@@ -22,6 +22,13 @@ public class UserAccountDAO extends AbstractDAO<UserAccount> implements IUserAcc
     }
 
     @Override
+    public UserAccount getOneBySTK(HttpServletRequest req, String stk) {
+        List<UserAccount> list = query(req, "SELECT * FROM UserAccount\n"
+                + "WHERE KHACHHANGID IN (SELECT CMND FROM TaiKhoan WHERE SOTK=?)", new UserAccountMapper(), stk);
+        return list.isEmpty() ? null : list.get(0);
+    }
+
+    @Override
     public String insert(HttpServletRequest req, String userName, String password, String image, String khachHangID) {
         insert(req, false, false, "insert into USERACCOUNT (TAIKHOAN,MATKHAU,IMAGEURL,KHACHHANGID) values(?,?,?,?)", userName, password, image, khachHangID);
         return null;
@@ -36,6 +43,11 @@ public class UserAccountDAO extends AbstractDAO<UserAccount> implements IUserAcc
     @Override
     public String updateImage(HttpServletRequest req, String imageUrl, String userId) {
         return crudAction(req, false, true, "UPDATE UserAccount SET IMAGEURL = ? WHERE id=?", imageUrl, userId);
+    }
+
+    @Override
+    public String updateFirebaseToken(HttpServletRequest req, String firebaseToken, String userId) {
+        return crudAction(req, false, true, "UPDATE UserAccount SET FIREBASETOKEN = ? WHERE id=?", firebaseToken, userId);
     }
 
 }

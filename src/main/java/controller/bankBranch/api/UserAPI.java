@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -29,6 +28,7 @@ import java.util.Date;
  */
 @WebServlet(name = "user-account", urlPatterns = {"/user-account"})
 public class UserAPI extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
     @Inject
     ICustomerService customerService;
@@ -44,7 +44,8 @@ public class UserAPI extends HttpServlet {
     }
 
     /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+     * response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
@@ -52,7 +53,8 @@ public class UserAPI extends HttpServlet {
     }
 
     /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+     * response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ObjectMapper mapper = new ObjectMapper();
@@ -75,7 +77,6 @@ public class UserAPI extends HttpServlet {
         String role = "ChiNhanh";
         BigDecimal soDu = new BigDecimal(0);
 
-
         Date date = new Date();
         SimpleDateFormat DateFor = new SimpleDateFormat("dd-MM-yyyy");
         String strNgayCap = DateFor.format(date);
@@ -97,19 +98,24 @@ public class UserAPI extends HttpServlet {
         ObjectMapper mapper = new ObjectMapper();
         request.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
+        String message = null;
 
         JsonReader rdr = Json.createReader(request.getInputStream());
         JsonObject obj = rdr.readObject();
+        String action = request.getParameter("action");
+        if (action.equalsIgnoreCase("updateFirebaseToken")) {
+            String firebaseToken = obj.getJsonString("firebaseToken").getString();
+            String userId = obj.getJsonString("userId").getString();
+            message = userAccountService.updateFirebaseToken(request, firebaseToken, userId);
+        } else {
+            String imageUrl = obj.getJsonString("imageUrl").getString();
+            String userId = obj.getJsonString("userId").getString();
 
-        String imageUrl = obj.getJsonString("imageUrl").getString();
-        String userId = obj.getJsonString("userId").getString();
-
-        String message = userAccountService.updateImage(request, imageUrl, userId);
-
+            message = userAccountService.updateImage(request, imageUrl, userId);
+        }
         if (message == null) {
             message = "Đổi hình thành công!";
         }
-
         JsonGenerator generator = Json.createGenerator(response.getOutputStream());
 
         generator.writeStartObject()

@@ -6,18 +6,20 @@ public class UserAccount {
     private String matKhau;
     private String imageUrl;
     private String khachHangID;
+    private String firebaseToken;
 
     public UserAccount() {
         super();
     }
 
-    public UserAccount(int id, String taiKhoan, String matKhau, String imageUrl, String khachHangID) {
+    public UserAccount(int id, String taiKhoan, String matKhau, String imageUrl, String khachHangID, String firebaseToken) {
         super();
         this.id = id;
         this.taiKhoan = taiKhoan;
         this.matKhau = matKhau;
         this.imageUrl = imageUrl;
         this.khachHangID = khachHangID;
+        this.firebaseToken = firebaseToken; 
     }
 
     public String getImageUrl() {
@@ -59,6 +61,16 @@ public class UserAccount {
     public void setKhachHangID(String khachHangID) {
         this.khachHangID = khachHangID;
     }
+
+    public String getFirebaseToken() {
+        return firebaseToken;
+    }
+
+    public void setFirebaseToken(String firebaseToken) {
+        this.firebaseToken = firebaseToken;
+    }
+
+
 
 
 }

@@ -24,6 +24,7 @@ public class UserAccountMapper implements RowMapper<UserAccount> {
             user.setMatKhau(rs.getString("MATKHAU"));
             user.setKhachHangID(rs.getString("KHACHHANGID"));
             user.setImageUrl(rs.getString("IMAGEURL"));
+            user.setFirebaseToken(rs.getString("FIREBASETOKEN"));
             return user;
         } catch (SQLException e) {
             return null;
