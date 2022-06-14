@@ -71,7 +71,8 @@ public class UserAPI extends HttpServlet {
         String phai = "Nam";
         String soDT = "0000000002";
         String maCN = "BENTHANH";
-        String imageURL = "https://learntodroid.com/ezoimgfmt/i0.wp.com/learntodroid.com/wp-content/uploads/2020/05/Learn-to-Droid-480.png?ezimgfmt=ng%3Awebp%2Fngcb1%2Frs%3Adevice%2Frscb1-1&ssl=1&w=480";
+        String imageURL = obj.getJsonString("imageUrl").getString();
+        if (imageURL.length() == 0)  imageURL = "https://learntodroid.com/ezoimgfmt/i0.wp.com/learntodroid.com/wp-content/uploads/2020/05/Learn-to-Droid-480.png?ezimgfmt=ng%3Awebp%2Fngcb1%2Frs%3Adevice%2Frscb1-1&ssl=1&w=480";
         String taiKhoan = obj.getJsonString("taiKhoan").getString();
         String pass = obj.getJsonString("matKhau").getString();
         String role = "ChiNhanh";
@@ -103,15 +104,16 @@ public class UserAPI extends HttpServlet {
         JsonReader rdr = Json.createReader(request.getInputStream());
         JsonObject obj = rdr.readObject();
         String action = request.getParameter("action");
-        if (action.equalsIgnoreCase("updateFirebaseToken")) {
-            String firebaseToken = obj.getJsonString("firebaseToken").getString();
-            String userId = obj.getJsonString("userId").getString();
-            message = userAccountService.updateFirebaseToken(request, firebaseToken, userId);
-        } else {
+        if (action == null) {
             String imageUrl = obj.getJsonString("imageUrl").getString();
             String userId = obj.getJsonString("userId").getString();
 
             message = userAccountService.updateImage(request, imageUrl, userId);
+        } else if (action.equalsIgnoreCase("updateFirebaseToken")) {
+            String firebaseToken = obj.getJsonString("firebaseToken").getString();
+            String userId = obj.getJsonString("userId").getString();
+
+            message = userAccountService.updateFirebaseToken(request, firebaseToken, userId);
         }
         if (message == null) {
             message = "Đổi hình thành công!";

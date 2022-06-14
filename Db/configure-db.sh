@@ -11,7 +11,7 @@ i=0
 sleep 20s
 while [[ $DBSTATUS -ne 0 ]] && [[ $i -lt 60 ]]; do
 	i=$i+1
-	DBSTATUS=$(/opt/mssql-tools/bin/sqlcmd -h -1 -t 1 -U SA -P Tuong1008. -Q "SET NOCOUNT ON; Select SUM(state) from sys.databases")
+	DBSTATUS=$(/opt/mssql-tools/bin/sqlcmd -h -1 -t 1 -U SA -P Admin1234. -Q "SET NOCOUNT ON; Select SUM(state) from sys.databases")
 	sleep 1s
 done
 

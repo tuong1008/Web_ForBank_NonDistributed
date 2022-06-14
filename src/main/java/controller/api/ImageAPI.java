@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.*;
+import java.net.URL;
 
 /**
  * @author tuong
@@ -28,12 +29,17 @@ public class ImageAPI extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-
         ServletContext sc = getServletContext();
 
         final String pathImage = request.getParameter("path");
-        try (InputStream is = sc.getResourceAsStream(pathImage)) {
+        InputStream is;
+        try {
 
+            if (pathImage.contains("http")) {
+                is = new URL(pathImage).openStream();
+            } else {
+                is = sc.getResourceAsStream(pathImage);
+            }
             // it is the responsibility of the container to close output stream
             OutputStream os = response.getOutputStream();
 
@@ -51,6 +57,8 @@ public class ImageAPI extends HttpServlet {
                     os.write(buffer, 0, bytesRead);
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -66,7 +74,9 @@ public class ImageAPI extends HttpServlet {
 
         String uploadPath = getServletContext().getRealPath("") + folderToSave;
         File uploadDir = new File(uploadPath);
-        if (!uploadDir.exists()) uploadDir.mkdir();
+        if (!uploadDir.exists()) {
+            uploadDir.mkdir();
+        }
 
         OutputStream out = null;
         InputStream filecontent = null;

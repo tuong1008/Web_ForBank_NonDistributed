@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet("/user-login")
 public class AuthenticationAPI extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
     @Inject
     IUserAccountService userAccountService;
@@ -34,7 +35,8 @@ public class AuthenticationAPI extends HttpServlet {
     }
 
     /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+     * response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ObjectMapper mapper = new ObjectMapper();
@@ -44,18 +46,30 @@ public class AuthenticationAPI extends HttpServlet {
         JsonReader rdr = Json.createReader(request.getInputStream());
         JsonObject obj = rdr.readObject();
 
-        String taiKhoan = obj.getJsonString("taiKhoan").getString();
-        String matKhau = obj.getJsonString("matKhau").getString();
+        String verifiedBy = request.getParameter("verifiedBy");
+        if (verifiedBy==null) {
+            String taiKhoan = obj.getJsonString("taiKhoan").getString();
+            String matKhau = obj.getJsonString("matKhau").getString();
 
-        System.out.println(taiKhoan + matKhau);
+            System.out.println(taiKhoan + matKhau);
 
-        UserAccount user = userAccountService.login(request, taiKhoan, matKhau);
+            UserAccount user = userAccountService.login(request, taiKhoan, matKhau);
 
-        mapper.writeValue(response.getOutputStream(), user);
+            mapper.writeValue(response.getOutputStream(), user);
+        } else {
+            String taiKhoan = obj.getJsonString("taiKhoan").getString();
+
+            System.out.println(taiKhoan);
+
+            UserAccount user = userAccountService.getOne(request, taiKhoan);
+
+            mapper.writeValue(response.getOutputStream(), user);
+        }
     }
 
     /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+     * response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
