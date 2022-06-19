@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="image/png" sizes="16x16" rel="icon" href="/static/img/bank_32.png">
     <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="/static/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
@@ -15,7 +16,7 @@
 </head>
 <body>
     <input type="hidden" id="tenNhom" name="tenNhom">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-dark navbar-expand-lg bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">Ngân hàng</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,6 +43,9 @@
                     <a class="nav-link" href="/employee" data-link>Nhân Viên</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/game" data-link>Chơi game</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" id="nav_item_login" href="/login" data-link>Đăng nhập</a>
                 </li>
                 <li class="nav-item">
@@ -63,10 +67,10 @@
                     <a class="nav-link" id="nav_item_logout" href="/logout" hidden data-link>Đăng xuất</a>
                 </li>
                 <li class="nav-item">
-                    <a id="nav_item_update" href="" hidden class="link-primary" data-link>Cập nhật</a>
+                    <a id="nav_item_update" href="" hidden class="nav-link" data-link>Cập nhật</a>
                 </li>
                 <li class="nav-item">
-                    <a id="nav_item_change_pass" href="/changePass" hidden class="link-primary" data-link>Đổi mật khẩu</a>
+                    <a id="nav_item_change_pass" href="/changePass" hidden class="nav-link" data-link>Đổi mật khẩu</a>
                 </li>
             </ul>
         </div>
