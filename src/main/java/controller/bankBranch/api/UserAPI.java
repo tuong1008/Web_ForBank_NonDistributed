@@ -116,7 +116,7 @@ public class UserAPI extends HttpServlet {
             message = userAccountService.updateFirebaseToken(request, firebaseToken, userId);
         }
         if (message == null) {
-            message = "Đổi hình thành công!";
+            message = "Cập nhật hình hoặc firebase token thành công!";
         }
         JsonGenerator generator = Json.createGenerator(response.getOutputStream());
 

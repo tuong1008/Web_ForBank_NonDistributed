@@ -45,6 +45,15 @@
                     <a class="nav-link" id="nav_item_login" href="/login" data-link>Đăng nhập</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/user-login" data-link>Đăng nhập Khách hàng</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile" data-link>Cá nhân</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/statistic" data-link>Thống kê</a>
+                </li>
+                <li class="nav-item">
                     <label id="myUser"></label>
                 </li>
                 <li class="nav-item">
@@ -72,4 +81,17 @@
 <script type="text/javascript" src="/static/js/pdfmake.min.js"></script>
 <script type="text/javascript" src="/static/js/vfs_fonts.js"></script>
 <script type="text/javascript" src="/static/js/buttons.html5.min.js"></script>
-</html>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script>
+<script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/firebase-messaging-sw.js');
+        navigator.serviceWorker.addEventListener('message', event => {
+            console.log(`The service worker sent me a message: ${event.data}`);
+            localStorage.setItem("fbToken", event.data);
+        });
+      });
+    }
+</script>

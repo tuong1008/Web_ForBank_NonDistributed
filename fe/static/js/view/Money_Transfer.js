@@ -6,10 +6,8 @@ export default class extends AbstractView {
         this.setTitle("Chuyển tiền");
     }
 
-    setEventBtn(callback) {
-        document.getElementById("addBtn").addEventListener("click", function (event) {
-            event.preventDefault();
-            document.querySelector("#app").innerHTML = `
+    onClickBtn(callback){
+        document.querySelector("#app").innerHTML = `
             <h2 id="errorMsg"></h2>
             <form id="formSignUp" name="formSignUp">
                 <div class="form-group">
@@ -99,6 +97,13 @@ export default class extends AbstractView {
                     });
                 event.preventDefault();
             });
+    }
+
+    setEventBtn(callback) {
+        const onClickBtn = this.onClickBtn;
+        document.getElementById("addBtn").addEventListener("click", function (event) {
+            event.preventDefault();
+            onClickBtn(callback);
         });
     }
 

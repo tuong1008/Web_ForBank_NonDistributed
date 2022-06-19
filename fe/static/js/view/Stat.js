@@ -92,10 +92,10 @@ export default class extends AbstractView {
         return `
         <form id="formSignUp" name="formSignUp">
             <div class="form-group">
-                <input type="date" class="form-control" id="tuNgay" name="tuNgay" placeholder="Từ ngày">
-                </div>
+                <input type="date" class="form-control" id="tuNgay" name="tuNgay" placeholder="Từ ngày" value="2021-01-01">
+            </div>
             <div class="form-group">
-                <input type="date" class="form-control" id="denNgay" name="denNgay" placeholder="Đến ngày">
+                <input type="date" class="form-control" id="denNgay" name="denNgay" placeholder="Đến ngày" value="2023-01-01">
             </div>
             <button id="signUpBtn" class="btn btn-primary">Liệt kê</button>
         </form>
