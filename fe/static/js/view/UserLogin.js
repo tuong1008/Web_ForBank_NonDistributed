@@ -227,10 +227,10 @@ export default class extends AbstractView {
                   let ten = hoTen.substring(hoTen.lastIndexOf(' ')+1);
 
                   localStorage.setItem("imageUrl", user.photoURL);
-                  fail(user.email, ho, ten); 
+                  fail(user.email, ho, ten);
                   return;
                 }
-                
+
                 // lưu thông tin user
                 localStorage.setItem("userId", success.id);
                 localStorage.setItem("imageUrl", success.imageUrl);
@@ -345,29 +345,39 @@ export default class extends AbstractView {
 
   getHtml() {
     return `
-        <h2 id="errorMsg"></h2>
-        <form id="formLogin" name="formLogin">
-            <div class="form-group">
-                <input type="text" class="form-control" id="taiKhoan" name="taiKhoan"
-                    placeholder="Email">
-            </div>
+<div class="d-flex align-items-center justify-content-center">
+<h2 id="errorMsg"></h2>
+<form id="formLogin" name="formLogin" style="width: 25rem;">
+    <div class="form-outline mb-4">
+        <input type="text" class="form-control" id="taiKhoan" name="taiKhoan" placeholder="Email">
+    </div>
 
-            <div class="form-group">
-                <input type="password" class="form-control" id="matKhau" name="matKhau"
-                    placeholder="Mật khẩu">
+    <div class="form-outline mb-4">
+        <input type="password" class="form-control" id="matKhau" name="matKhau" placeholder="Mật khẩu">
+    </div>
+    
+    <div class="row mb-4">
+        <div class="col d-flex justify-content-center">
+            <div class="form-check">
             </div>
-            <div class="form-group">
-                <a aria-current="page" href="/forgot-password" data-link>Quên Mật Khẩu</a>
-            </div>
-            <button id="loginWithGoogle" class="btn btn-primary">Đăng nhập với Google</button>
-            <button id="loginBtn" class="btn btn-primary">Đăng nhập</button>
+        </div>
+    
+        <div class="col">
+            <a aria-current="page" href="/forgot-password" data-link>Quên Mật Khẩu</a>
+        </div>
+    </div>
 
-            <div class="form-group">
-                <p>Bạn chưa có tài khoản?</p>
-            </div>
-            <div class="form-group">
-                <a aria-current="page" href="/signup" data-link>Đăng ký</a>
-            </div>
-        </form>`;
+    <div class="text-center">
+        <button id="loginBtn" class="btn btn-primary btn-block mb-2">Đăng nhập</button>
+        <p>Hoặc</p>
+        <button id="loginWithGoogle" class="btn btn-primary mb-4">Đăng nhập với Google</button>
+    </div>
+    
+    <div class="text-center">
+    <p>Bạn chưa có tài khoản? <a href="/signup" data-link aria-current="page">Đăng ký</a></p>
+    </div>
+</form>
+</div>
+`;
   }
 }
