@@ -8,16 +8,17 @@ export default class extends AbstractView {
 
     onClickBtn(callback) {
         document.querySelector("#app").innerHTML = `
+<h2>Giao dịch</h2>
 <div class="d-flex align-items-center justify-content-center">
 <h2 id="errorMsg"></h2>
-<form id="formSignUp" name="formSignUp">
-    <div class="form-group">
+<form class="form-control mb-2" style="width: 25rem;" id="formSignUp" name="formSignUp">
+    <div class="form-group mb-2">
         <input type="text" class="form-control" id="soTK_Chuyen" name="soTK_Chuyen" placeholder="Tài Khoản Chuyển">
     </div>
-    <div class="form-group">
+    <div class="form-group mb-2">
         <input type="text" class="form-control" id="soTien" name="soTien" placeholder="Số Tiền">
     </div>
-    <div class="form-group">
+    <div class="form-group mb-2">
         <input type="text" class="form-control" id="soTK_Nhan" name="soTK_Nhan" placeholder="Tài Khoản Nhận">
     </div>
     <button id="signUpBtn" class="btn btn-primary">Xác Nhận</button>

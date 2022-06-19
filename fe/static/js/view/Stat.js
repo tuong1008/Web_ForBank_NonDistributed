@@ -90,26 +90,28 @@ export default class extends AbstractView {
 
     getHtml() {
         return `
-        <form id="formSignUp" name="formSignUp">
-            <div class="form-group">
-                <input type="date" class="form-control" id="tuNgay" name="tuNgay" placeholder="Từ ngày" value="2021-01-01">
-            </div>
-            <div class="form-group">
-                <input type="date" class="form-control" id="denNgay" name="denNgay" placeholder="Đến ngày" value="2023-01-01">
-            </div>
-            <button id="signUpBtn" class="btn btn-primary">Liệt kê</button>
-        </form>
-        <table id="table" class="table table-primary">
-        <thead>
-            <tr>
-                <th>Số dư đầu</th>
-                <th>Ngày</th>
-                <th>Loại giao dịch</th>
-                <th>Số tiền</th>
-                <th>Số dư sau</th>
-            </tr>
-        </thead>
-        </table>
-        `;
+<div class="d-flex align-items-center justify-content-center">
+<form id="formSignUp" name="formSignUp">
+    <div class="form-group">
+        <input type="date" class="form-control" id="tuNgay" name="tuNgay" placeholder="Từ ngày" value="2021-01-01">
+    </div>
+    <div class="form-group">
+        <input type="date" class="form-control" id="denNgay" name="denNgay" placeholder="Đến ngày" value="2023-01-01">
+    </div>
+    <button id="signUpBtn" class="btn btn-primary">Liệt kê</button>
+</form>
+</div>
+<table id="table" class="table table-primary">
+<thead>
+    <tr>
+        <th>Số dư đầu</th>
+        <th>Ngày</th>
+        <th>Loại giao dịch</th>
+        <th>Số tiền</th>
+        <th>Số dư sau</th>
+    </tr>
+</thead>
+</table>
+`;
     }
 }

@@ -8,22 +8,21 @@ export default class extends AbstractView {
 
     onClickBtn(callback) {
         document.querySelector("#app").innerHTML = `
+<h2>Giao dịch</h2>
 <div class="d-flex align-items-center justify-content-center">
 <h2 id="errorMsg"></h2>
-<form id="formSignUp" name="formSignUp">
-    <div class="form-group">
-        <input type="text" class="form-control" id="soTK" name="soTK"
-            placeholder="Số Tài Khoản">
+<form id="formSignUp" name="formSignUp" style="width: 25rem;">
+    <div class="form-group mb-2">
+        <input type="text" class="form-control" id="soTK" name="soTK" placeholder="Số Tài Khoản">
     </div>
 
-    <select id="loaiGD">
+    <select class="form-select mb-2" id="loaiGD">
         <option value="GT" selected>Gởi Tiền</option>
         <option value="RT">Rút Tiền</option>
     </select>
 
-    <div class="form-group">
-        <input type="text" class="form-control" id="soTien" name="soTien"
-            placeholder="Số Tiền">
+    <div class="form-group mb-2">
+        <input type="text" class="form-control" id="soTien" name="soTien" placeholder="Số Tiền">
     </div>
     <button id="signUpBtn" class="btn btn-primary">Xác nhận</button>
 </form>
@@ -135,7 +134,7 @@ export default class extends AbstractView {
 
     getHtml() {
         return `
-<button id="addBtn" class="btn btn-primary">Gởi hoặc Rút</button>
+<button id="addBtn" class="btn btn-primary">Gởi/Rút tiền</button>
 <table id="table" class="table table-primary">
     <thead>
     <tr>

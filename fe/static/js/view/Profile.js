@@ -154,56 +154,55 @@ export default class extends AbstractView {
 
   getHtml() {
     return `
-        <h2 id="errorMsg"></h2>
-        <form id="myForm" name="myForm">
-            <div class="form-group">
-            <img src="http://localhost:8080/web_forbank/image?path=${localStorage.getItem(
-              "imageUrl"
-            )}" alt="avatar" width="150" height="150">
-            </div>
-            <div class="form-group">
-            <input type="file" class="form-control" id="picture" name="picture"
-                    placeholder="Avatar">
-            </div>
+<h2>Thông tin cá nhân</h2>
+<div class="d-flex align-items-center justify-content-center">
+<h2 id="errorMsg"></h2>
+<form id="myForm" name="myForm" style="width: 25rem;">
+    <div class="form-group mb-2">
+    <img src="http://localhost:8080/web_forbank/image?path=${localStorage.getItem("imageUrl")}" alt="avatar" width="150" height="150">
+    </div>
+    <div class="form-group mb-2">
+    <input type="file" class="form-control" id="picture" name="picture"
+            placeholder="Avatar">
+    </div>
 
-            <div class="form-group">
-            <input type="text" class="form-control" id="cmnd" name="cmnd"
-                    placeholder="CMND" readonly>
-            </div>
+    <div class="form-group mb-2">
+    <input type="text" class="form-control disabled" id="cmnd" name="cmnd" placeholder="CMND" readonly>
+    </div>
 
-            <div class="form-group">
-                <input type="text" class="form-control" id="ho" name="ho"
-                    placeholder="Họ">
-            </div>
+    <div class="form-group mb-2">
+        <input type="text" class="form-control" id="ho" name="ho"
+            placeholder="Họ">
+    </div>
 
-            <div class="form-group">
-                <input type="text" class="form-control" id="ten" name="ten"
-                    placeholder="Tên">
-            </div>
+    <div class="form-group mb-2">
+        <input type="text" class="form-control" id="ten" name="ten"
+            placeholder="Tên">
+    </div>
 
-            <div class="form-group">
-                <input type="text" class="form-control" id="diaChi" name="diaChi"
-                    placeholder="Địa chỉ">
-            </div>
+    <div class="form-group mb-2">
+        <input type="text" class="form-control" id="diaChi" name="diaChi"
+            placeholder="Địa chỉ">
+    </div>
 
-            <div class="form-group">
-            <select name="phai" id="phai">
-                <option value="Nam">Nam</option>
-                <option value="Nữ">Nữ</option>
-            </select>
-            </div>
+    <div class="form-group mb-2">
+    <select class="form-select" name="phai" id="phai">
+        <option value="Nam">Nam</option>
+        <option value="Nữ">Nữ</option>
+    </select>
+    </div>
 
-            <div class="form-group">
-                <input type="text" class="form-control" id="soDT" name="soDT"
-                    placeholder="Số điện thoại">
-            </div>
+    <div class="form-group mb-2">
+        <input type="text" class="form-control" id="soDT" name="soDT" placeholder="Số điện thoại">
+    </div>
 
-            <div class="form-group">
-                <input type="date" class="form-control" id="ngayCap" name="ngayCap"
-                    placeholder="Ngày cấp CMND">
-            </div>
+    <div class="form-group mb-2">
+        <input type="date" class="form-control" id="ngayCap" name="ngayCap" placeholder="Ngày cấp CMND">
+    </div>
 
-            <button id="myBtn" class="btn btn-primary">Cập nhật</button>
-        </form>`;
+    <button id="myBtn" class="btn btn-primary">Cập nhật</button>
+</form>
+</div>
+`;
   }
 }

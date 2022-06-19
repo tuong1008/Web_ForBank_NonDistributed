@@ -138,7 +138,7 @@ export default class extends AbstractView {
 <div class="d-flex align-items-center justify-content-center">
 
 <h2 id="errorMsg"></h2>
-<form id="formSignUp" name="formSignUp">
+<form id="formSignUp" name="formSignUp" style="width: 25rem;">
     <div class="form-group">
         <input type="text" class="form-control mb-2" id="cmnd" name="cmnd" placeholder="CMND">
     </div>
@@ -152,7 +152,7 @@ export default class extends AbstractView {
         <input type="text" class="form-control mb-2" id="diaChi" name="diaChi" placeholder="Địa chỉ">
     </div>
 
-    <select id="phai">
+    <select class="form-select" id="phai">
         <option value="Nam">Nam</option>
         <option value="Nữ">Nữ</option>
     </select>
