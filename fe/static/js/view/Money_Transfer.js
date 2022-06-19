@@ -6,97 +6,99 @@ export default class extends AbstractView {
         this.setTitle("Chuyển tiền");
     }
 
-    onClickBtn(callback){
+    onClickBtn(callback) {
         document.querySelector("#app").innerHTML = `
-            <h2 id="errorMsg"></h2>
-            <form id="formSignUp" name="formSignUp">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="soTK_Chuyen" name="soTK_Chuyen"
-                        placeholder="Tài Khoản Chuyển">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="soTien" name="soTien"
-                        placeholder="Số Tiền">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="soTK_Nhan" name="soTK_Nhan"
-                        placeholder="Tài Khoản Nhận">
-                </div>
-                <button id="signUpBtn" class="btn btn-primary">Xác Nhận</button>
-            </form>`;
-            //form validation
-            $("#formSignUp").validate({
-                onkeyup: function (element) {
-                    $(element).valid();
+<h2>Giao dịch</h2>
+<div class="d-flex align-items-center justify-content-center">
+<h2 id="errorMsg"></h2>
+<form class="form-control mb-2" style="width: 25rem;" id="formSignUp" name="formSignUp">
+    <div class="form-group mb-2">
+        <input type="text" class="form-control" id="soTK_Chuyen" name="soTK_Chuyen" placeholder="Tài Khoản Chuyển">
+    </div>
+    <div class="form-group mb-2">
+        <input type="text" class="form-control" id="soTien" name="soTien" placeholder="Số Tiền">
+    </div>
+    <div class="form-group mb-2">
+        <input type="text" class="form-control" id="soTK_Nhan" name="soTK_Nhan" placeholder="Tài Khoản Nhận">
+    </div>
+    <button id="signUpBtn" class="btn btn-primary">Xác Nhận</button>
+</form>
+</div>
+`;
+
+        //form validation
+        $("#formSignUp").validate({
+            onkeyup: function (element) {
+                $(element).valid();
+            },
+            rules: {
+                soTK_Chuyen: {
+                    required: true,
+                    digits: true,
+                    maxlength: 9
                 },
-                rules: {
-                    soTK_Chuyen: {
-                        required: true,
-                        digits: true,
-                        maxlength: 9
-                    },
-                    soTK_Nhan: {
-                        required: true,
-                        digits: true,
-                        maxlength: 9
-                    },
-                    soTien: {
-                        required: true,
-                        digits: true,
-                        min: 100000
-                    }
+                soTK_Nhan: {
+                    required: true,
+                    digits: true,
+                    maxlength: 9
                 },
-                messages: {
-                    soTK_Chuyen: {
-                        required: "Bắt buộc nhập Số tài khoản",
-                        digits: "Bắt buộc nhập số",
-                        maxlength: "Hãy nhập tối đa 9 ký tự"
-                    },
-                    soTK_Nhan: {
-                        required: "Bắt buộc nhập Số tài khoản",
-                        digits: "Bắt buộc nhập số",
-                        maxlength: "Hãy nhập tối đa 9 ký tự"
-                    },
-                    soTien: {
-                        required: "Bắt buộc nhập Số Tiền",
-                        digits: "Bắt buộc nhập số",
-                        min: "Giao dịch tối thiểu 100000"
-                    }
+                soTien: {
+                    required: true,
+                    digits: true,
+                    min: 100000
                 }
+            },
+            messages: {
+                soTK_Chuyen: {
+                    required: "Bắt buộc nhập Số tài khoản",
+                    digits: "Bắt buộc nhập số",
+                    maxlength: "Hãy nhập tối đa 9 ký tự"
+                },
+                soTK_Nhan: {
+                    required: "Bắt buộc nhập Số tài khoản",
+                    digits: "Bắt buộc nhập số",
+                    maxlength: "Hãy nhập tối đa 9 ký tự"
+                },
+                soTien: {
+                    required: "Bắt buộc nhập Số Tiền",
+                    digits: "Bắt buộc nhập số",
+                    min: "Giao dịch tối thiểu 100000"
+                }
+            }
+        });
+        //end form validation
+        document.getElementById("signUpBtn").addEventListener("click", function (event) {
+            if (!$("#formSignUp").valid()) return;
+            let formSignUp = document.getElementById('formSignUp');
+            let formData = new FormData(formSignUp);
+            var object = {};
+            formData.forEach(function (value, key) {
+                object[key] = value;
             });
-            //end form validation
-            document.getElementById("signUpBtn").addEventListener("click", function (event) {
-                if (!$("#formSignUp").valid()) return;
-                let formSignUp = document.getElementById('formSignUp');
-                let formData = new FormData(formSignUp);
-                var object = {};
-                formData.forEach(function (value, key) {
-                    object[key] = value;
-                });
-                console.log(object);
-                let url = "http://localhost:8080/web_forbank/api-money-tranfer";
-                fetch(url, {
-                    method: "POST",
-                    credentials: 'include',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify(object)
+            console.log(object);
+            let url = "http://localhost:8080/web_forbank/api-money-tranfer";
+            fetch(url, {
+                method: "POST",
+                credentials: 'include',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(object)
+            })
+                .then(function (response) {
+                    return response.json();
                 })
-                    .then(function (response) {
-                        return response.json();
-                    })
-                    .then(result => {
-                        console.log(result);
-                        if ((result.message).includes("thành công")) {
-                            callback();
-                        } else {
-                            document.getElementById("errorMsg").innerHTML = result.message;
-                        }
-                    })
-                    .catch(err => {
-                        console.log(err);
-                    });
-                event.preventDefault();
-            });
+                .then(result => {
+                    console.log(result);
+                    if ((result.message).includes("thành công")) {
+                        callback();
+                    } else {
+                        document.getElementById("errorMsg").innerHTML = result.message;
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+            event.preventDefault();
+        });
     }
 
     setEventBtn(callback) {

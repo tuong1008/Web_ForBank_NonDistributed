@@ -7,8 +7,8 @@ export default class extends AbstractView {
     }
 
     //event cho NGANHANG
-    setEventBtn(callback){
-        document.getElementById("submitBtn").addEventListener("click", function(event) {
+    setEventBtn(callback) {
+        document.getElementById("submitBtn").addEventListener("click", function (event) {
             event.preventDefault();
             let myForm = document.getElementById('myForm');
             let formData = new FormData(myForm);
@@ -23,15 +23,15 @@ export default class extends AbstractView {
                 })
                 .then(accounts => {
                     console.log(accounts);
-                
+
                     callback(); //to reload
                     let x = document.getElementById("table");
                     let hasTbody = document.getElementsByTagName("tbody");
-                    if (hasTbody.length==0){
+                    if (hasTbody.length === 0) {
                         let body = document.createElement("tbody");
                         x.appendChild(body);
-                    }else{
-                        hasTbody[0].innerHTML='';
+                    } else {
+                        hasTbody[0].innerHTML = '';
                     }
                     for (let account of accounts) {
                         let birthday = new Date(account.ngayMoTK);
@@ -44,7 +44,7 @@ export default class extends AbstractView {
                             <td>${birthday.getDate()}-${birthday.getMonth() + 1}-${birthday.getFullYear()} ${birthday.getHours()}:${birthday.getMinutes()}</td>
                             <td><a class="text-success" href="stat/${account.soTK}" data-link>Sao kê</a></td>
                             `
-                            hasTbody[0].appendChild(row);
+                        hasTbody[0].appendChild(row);
                     }
                     setTimeout(function () {
                         $('#table').DataTable({
@@ -59,7 +59,7 @@ export default class extends AbstractView {
                     }, 300);
                 })
                 .catch(err => {
-                    document.getElementById("errorMsg").innerHTML =  err;
+                    document.getElementById("errorMsg").innerHTML = err;
                 });
         });
     }
@@ -126,21 +126,21 @@ export default class extends AbstractView {
                 return response.json();
             })
             .then(function (accounts) {
-                    let tenNhom = document.getElementById("tenNhom").value;
-                    if (tenNhom.toUpperCase()=="CHINHANH"){
-                        console.log(accounts);
-                        let x = document.getElementById("table");
-                        let hasTbody = document.getElementsByTagName("tbody");
-                        if (hasTbody.length == 0) {
-                            let body = document.createElement("tbody");
-                            x.appendChild(body);
-                        } else {
-                            hasTbody[0].innerHTML = '';
-                        }
-                        for (let account of accounts) {
-                            let birthday = new Date(account.ngayMoTK);
-                            let row = document.createElement("TR");
-                            row.innerHTML = `
+                let tenNhom = document.getElementById("tenNhom").value;
+                if (tenNhom.toUpperCase() === "CHINHANH") {
+                    console.log(accounts);
+                    let x = document.getElementById("table");
+                    let hasTbody = document.getElementsByTagName("tbody");
+                    if (hasTbody.length === 0) {
+                        let body = document.createElement("tbody");
+                        x.appendChild(body);
+                    } else {
+                        hasTbody[0].innerHTML = '';
+                    }
+                    for (let account of accounts) {
+                        let birthday = new Date(account.ngayMoTK);
+                        let row = document.createElement("TR");
+                        row.innerHTML = `
                         <td>${account.soTK}</td>
                         <td>${account.cmnd}</td>
                         <td>${account.soDu}</td>
@@ -148,40 +148,39 @@ export default class extends AbstractView {
                         <td>${birthday.getDate()}-${birthday.getMonth() + 1}-${birthday.getFullYear()} ${birthday.getHours()}:${birthday.getMinutes()}</td>
                         <td><a href="/accountDelete/${account.soTK}" data-link>D</a></td>
                         `
-                            hasTbody[0].appendChild(row);
-                        }
-                        setTimeout(function () {
-                            $('#table').DataTable({
-                                dom: 'Bfrtip',
-                                buttons: [
-                                    'copyHtml5',
-                                    'excelHtml5',
-                                    'csvHtml5',
-                                    'pdfHtml5'
-                                ]
-                            });
-                        }, 300);
+                        hasTbody[0].appendChild(row);
                     }
-                    else{
-                        fetch("http://localhost:8080/web_forbank/api-branch", {credentials: 'include'})
-                            .then(function (response) {
-                                return response.json();
-                            })
-                            .then(function (branchs) {
-                                let x = document.getElementById("branchs");
-                                $("#branchs").empty();
-                                for (let branch of branchs) {
-                                    let option = document.createElement("option");
-                                    option.text = branch.tenCN;
-                                    option.value = branch.maCN;
-                                    x.add(option);
-                                }
-                                let opt = document.createElement("option");
-                                opt.text = "Tất cả";
-                                opt.value = "getAll";
-                                x.add(opt);
-                            });
-                    }
+                    setTimeout(function () {
+                        $('#table').DataTable({
+                            dom: 'Bfrtip',
+                            buttons: [
+                                'copyHtml5',
+                                'excelHtml5',
+                                'csvHtml5',
+                                'pdfHtml5'
+                            ]
+                        });
+                    }, 300);
+                } else {
+                    fetch("http://localhost:8080/web_forbank/api-branch", {credentials: 'include'})
+                        .then(function (response) {
+                            return response.json();
+                        })
+                        .then(function (branchs) {
+                            let x = document.getElementById("branchs");
+                            $("#branchs").empty();
+                            for (let branch of branchs) {
+                                let option = document.createElement("option");
+                                option.text = branch.tenCN;
+                                option.value = branch.maCN;
+                                x.add(option);
+                            }
+                            let opt = document.createElement("option");
+                            opt.text = "Tất cả";
+                            opt.value = "getAll";
+                            x.add(opt);
+                        });
+                }
 
             })
             .catch(err => {
@@ -191,9 +190,9 @@ export default class extends AbstractView {
     };
 
     getHtml() {
-    let tenNhom = document.getElementById("tenNhom").value;
-    if (tenNhom.toUpperCase()=="NGANHANG"){
-        return `
+        let tenNhom = document.getElementById("tenNhom").value;
+        if (tenNhom.toUpperCase() === "NGANHANG") {
+            return `
         <h2 id="errorMsg"></h2>
         <form id="myForm" name="myForm">
             <select name="branchs" id="branchs">
@@ -220,9 +219,8 @@ export default class extends AbstractView {
         </thead>
         </table>
         `;
-    }
-    else{
-        return `
+        } else {
+            return `
         <button id="undoBtn" class="btn btn-primary" disabled>Hoàn Tác</button>
         <h2 id="errorMsg"></h2>
         <table id="table" class="table table-primary">
@@ -238,6 +236,6 @@ export default class extends AbstractView {
         </thead>
         </table>
         `;
-    }
+        }
     }
 }

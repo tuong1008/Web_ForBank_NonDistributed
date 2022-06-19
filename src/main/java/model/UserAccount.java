@@ -19,7 +19,7 @@ public class UserAccount {
         this.matKhau = matKhau;
         this.imageUrl = imageUrl;
         this.khachHangID = khachHangID;
-        this.firebaseToken = firebaseToken; 
+        this.firebaseToken = firebaseToken;
     }
 
     public String getImageUrl() {
