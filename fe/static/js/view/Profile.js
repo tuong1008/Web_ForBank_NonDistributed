@@ -26,13 +26,13 @@ export default class extends AbstractView {
           extension = oldFileName.substring(index);
         }
 
-        formData.set(
-          "picture",
-          document.getElementById("picture").files[0],
-          formData.get("cmnd") + extension
-        );
-        console.log(formData.get("picture").name);
         if (isChangeAvatar) {
+          formData.set(
+            "picture",
+            document.getElementById("picture").files[0],
+            formData.get("cmnd") + extension
+          );
+          console.log(formData.get("picture").name);
           //save hình lên server
           let tempImageUrl = "/avatar/" + formData.get("picture").name;
           fetch("http://localhost:8080/web_forbank/image?folderToSave=avatar", {
@@ -80,6 +80,23 @@ export default class extends AbstractView {
         formData.forEach(function (value, key) {
           object[key] = value;
         });
+        let tempNgayCap = new Date(object["ngayCap"]);
+        if (tempNgayCap.getMonth() <= 8) {
+          object["ngayCap"] =
+            tempNgayCap.getDate() +
+            "-0" +
+            (tempNgayCap.getMonth() + 1) +
+            "-" +
+            tempNgayCap.getFullYear()
+        } else {
+          object["ngayCap"] =
+            tempNgayCap.getDate() +
+            "-" +
+            (tempNgayCap.getMonth() + 1) +
+            "-" +
+            tempNgayCap.getFullYear();
+        }
+        console.log(object);
         fetch("http://localhost:8080/web_forbank/api-customer", {
           method: "PUT",
           credentials: "include",
@@ -103,6 +120,7 @@ export default class extends AbstractView {
                 })
                 .then(function (success) {
                   console.log(success);
+                  alert("Cập nhật thành công!");
                 })
                 .catch((err) => {
                   console.log(err);
@@ -132,6 +150,7 @@ export default class extends AbstractView {
         document.getElementById("ten").value = customer.ten;
         document.getElementById("diaChi").value = customer.diaChi;
         document.getElementById("phai").value = customer.phai;
+        document.getElementById("avatar").src=`http://localhost:8080/web_forbank/image?path=${localStorage.getItem("imageUrl")}`;
         let tempNgayCap = new Date(customer.ngayCap);
         if (tempNgayCap.getMonth() <= 8) {
           document.getElementById("ngayCap").value =
@@ -157,9 +176,9 @@ export default class extends AbstractView {
         <h2 id="errorMsg"></h2>
         <form id="myForm" name="myForm">
             <div class="form-group">
-            <img src="http://localhost:8080/web_forbank/image?path=${localStorage.getItem(
+            <img id="avatar" src="http://localhost:8080/web_forbank/image?path=${localStorage.getItem(
               "imageUrl"
-            )}" alt="avatar" width="150" height="150">
+              )}" alt="avatar" width="150" height="150">
             </div>
             <div class="form-group">
             <input type="file" class="form-control" id="picture" name="picture"
@@ -200,7 +219,7 @@ export default class extends AbstractView {
 
             <div class="form-group">
                 <input type="date" class="form-control" id="ngayCap" name="ngayCap"
-                    placeholder="Ngày cấp CMND">
+                    placeholder="yyyy-MM-dd">
             </div>
 
             <button id="myBtn" class="btn btn-primary">Cập nhật</button>

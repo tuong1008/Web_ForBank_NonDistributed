@@ -94,7 +94,6 @@ const router = async () => {
     }
   } else if (view instanceof UserLogin) {
     document.querySelector("#app").innerHTML = view.getHtml();
-    view.setNotificationEvent();
     view.setEventLogin(function (uri) {
       navigateTo(`/stat/${localStorage.getItem("soTK")}`);
     });
@@ -308,11 +307,11 @@ const router = async () => {
                 };
         })();
 
-        let soundJump = new Audio("/static/game/wing.ogg");
-        let soundScore = new Audio("/static/game/point.ogg");
-        let soundHit = new Audio("/static/game/hit.ogg");
-        let soundDie = new Audio("/static/game/die.ogg");
-        let soundSwoosh = new Audio("/static/game/swooshing.ogg");
+        let soundJump = new Audio("/static/Game/wing.ogg");
+        let soundScore = new Audio("/static/Game/point.ogg");
+        let soundHit = new Audio("/static/Game/hit.ogg");
+        let soundDie = new Audio("/static/Game/die.ogg");
+        let soundSwoosh = new Audio("/static/Game/swooshing.ogg");
 
         let channel_max = 10; // number of channels
         let audiochannels = [];
@@ -736,7 +735,7 @@ const router = async () => {
         GameEngine.Bird = function () {
 
             this.img = new Image();
-            this.img.src = '/static/game/bird.png';
+            this.img.src = '/static/Game/bird.png';
             this.gravity = 0.1;
             this.width = 34;
             this.height = 24;
@@ -887,7 +886,7 @@ const router = async () => {
         window.Splash = function () {
 
             this.banner = new Image();
-            this.banner.src = "/static/game/splash.png";
+            this.banner.src = "/static/Game/splash.png";
 
             this.init = function () {
                 play_sound(soundSwoosh);
@@ -935,7 +934,7 @@ const router = async () => {
 
                 for (let n = 0; n < 10; n++) {
                     let img = new Image();
-                    img.src = "/static/game/font_small_" + n + '.png';
+                    img.src = "/static/Game/font_small_" + n + '.png';
                     GameEngine.fonts.push(img);
                 }
                 GameEngine.digits = ["0"];
@@ -1039,12 +1038,12 @@ const router = async () => {
                 setTimeout(function () {
                     play_sound(soundDie);
                     that.banner = new Image();
-                    that.banner.src = "/static/game/scoreboard.png";
+                    that.banner.src = "/static/Game/scoreboard.png";
                     let m = that.getMedal();
                     that.medal = new Image();
-                    that.medal.src = '/static/game/medal_' + m + '.png';
+                    that.medal.src = '/static/Game/medal_' + m + '.png';
                     that.replay = new Image();
-                    that.replay.src = "/static/game/replay.png";
+                    that.replay.src = "/static/Game/replay.png";
                     that.highscore = that.getHighScore();
 
                     console.log(that.medal.src);
@@ -1099,6 +1098,7 @@ const router = async () => {
     document.querySelector("#app").innerHTML = view.getHtml();
 
     view.load();
+    view.setEventBtn();
   }
 };
 

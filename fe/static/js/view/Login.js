@@ -32,13 +32,23 @@ export default class extends AbstractView {
 
 
                     document.getElementById("nav_item_login").hidden=true;
+                    document.getElementById("gameNavItem").hidden=true;
+                    document.getElementById("nav_item_login_client").hidden=true;
+                    document.getElementById("statisticNavItem").hidden=true;
+                    document.getElementById("profileNavItem").hidden=true;
+
+                    document.getElementById("customerNavItem").hidden=false;
+                    document.getElementById("accountNavItem").hidden=false;
+                    document.getElementById("employeeNavItem").hidden=false;
                     document.getElementById("nav_item_logout").hidden=false;
+                    document.getElementById("nav_item_change_pass").hidden=false;
+                    document.getElementById("tenNhom").hidden = false;
+                    document.getElementById("myUser").hidden =false;
+                    document.getElementById("myMaCN").hidden =false;
 
                     let navItemUpdate = document.getElementById("nav_item_update");
                     navItemUpdate.hidden=false;
                     navItemUpdate.href = `/employeeUpdate/${success.userName}`;
-
-                    document.getElementById("nav_item_change_pass").hidden=false;
 
                     return callback();
                 })
@@ -59,9 +69,17 @@ export default class extends AbstractView {
             .then(function (result) {
                 if ((result.message).includes("thành công")){
                     document.getElementById("nav_item_login").hidden=false;
+                    document.getElementById("gameNavItem").hidden=true;
+                    document.getElementById("nav_item_login_client").hidden=false;
+                    document.getElementById("statisticNavItem").hidden=true;
+
+                    document.getElementById("profileNavItem").hidden=true;
+                    document.getElementById("customerNavItem").hidden=true;
+                    document.getElementById("accountNavItem").hidden=true;
+                    document.getElementById("employeeNavItem").hidden=true;
                     document.getElementById("nav_item_logout").hidden=true;
-                    document.getElementById("nav_item_update").hidden=true;
                     document.getElementById("nav_item_change_pass").hidden=true;
+                    document.getElementById("nav_item_update").hidden=true;
                     document.getElementById("myUser").innerHTML ='';
                     document.getElementById("myMaCN").innerHTML ='';
                 }

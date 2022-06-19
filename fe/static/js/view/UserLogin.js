@@ -131,6 +131,22 @@ export default class extends AbstractView {
                           console.log(allTK);
                           localStorage.setItem("soTK", allTK[0].soTK);
                           localStorage.setItem("soDu", allTK[0].soDu);
+
+                          document.getElementById("nav_item_login").hidden=true;
+                          document.getElementById("gameNavItem").hidden=false;
+                          document.getElementById("nav_item_login_client").hidden=true;
+                          document.getElementById("statisticNavItem").hidden=false;
+
+                          document.getElementById("profileNavItem").hidden=false;
+                          document.getElementById("customerNavItem").hidden=true;
+                          document.getElementById("accountNavItem").hidden=true;
+                          document.getElementById("employeeNavItem").hidden=true;
+                          document.getElementById("nav_item_logout").hidden=false;
+                          document.getElementById("nav_item_change_pass").hidden=true;
+                          document.getElementById("nav_item_update").hidden=true;
+                          document.getElementById("tenNhom").hidden = true;
+                          document.getElementById("myUser").hidden =true;
+                          document.getElementById("myMaCN").hidden =true;
                           callback();
                         })
                         .catch((err) => {
@@ -269,6 +285,22 @@ export default class extends AbstractView {
                           console.log(allTK);
                           localStorage.setItem("soTK", allTK[0].soTK);
                           localStorage.setItem("soDu", allTK[0].soDu);
+                          document.getElementById("nav_item_login").hidden=true;
+                          document.getElementById("gameNavItem").hidden=false;
+                          document.getElementById("nav_item_login_client").hidden=true;
+                          document.getElementById("statisticNavItem").hidden=false;
+
+                          document.getElementById("profileNavItem").hidden=false;
+                          document.getElementById("customerNavItem").hidden=true;
+                          document.getElementById("accountNavItem").hidden=true;
+                          document.getElementById("employeeNavItem").hidden=true;
+                          document.getElementById("nav_item_logout").hidden=false;
+                          document.getElementById("nav_item_change_pass").hidden=true;
+                          document.getElementById("nav_item_update").hidden=true;
+                          document.getElementById("tenNhom").hidden = true;
+                          document.getElementById("myUser").hidden =true;
+                          document.getElementById("myMaCN").hidden =true;
+
                           callback();
                         })
                         .catch((err) => {
@@ -300,48 +332,6 @@ export default class extends AbstractView {
           });
       });
   }
-
-  setNotificationEvent() {
-    const messaging = getMessaging();
-    onMessage(messaging, (payload) => {
-      console.log("Message received. ", payload);
-      // ...
-    });
-  }
-
-  // testMessaging(){
-  //   const messaging = getMessaging();
-  //   console.log(messaging);
-  //   getToken(messaging, { vapidKey: "BNI2VHGLrARhaSbTbP1ya8-0WKW298crx9gTxF73jWTZyUFtThQGhFHqy7lxEGPB_CwU8eXipCWxlrgcBXFF5AA" })
-  //  .then((currentToken) => {
-  //   if (currentToken) {
-  //     // Send the token to your server and update the UI if necessary
-  //     console.log(currentToken);
-  //     // ...
-  //   } else {
-  //     // Show permission request UI
-  //     console.log('No registration token available. Request permission to generate one.');
-  //     // ...
-  //   }
-  // }).catch((err) => {
-  //   console.log('An error occurred while retrieving token. ', err);
-  //   // ...
-  // });
-
-  // onBackgroundMessage(messaging, (payload) => {
-  //   console.log('[firebase-messaging-sw.js] Received background message ', payload);
-  //   // Customize notification here
-  //   const notificationTitle = 'Background Message Title';
-  //   const notificationOptions = {
-  //     body: 'Background Message body.',
-  //     icon: '/firebase-logo.png'
-  //   };
-
-  //   self.registration.showNotification(notificationTitle,
-  //     notificationOptions);
-  // });
-
-  // }
 
   getHtml() {
     return `
