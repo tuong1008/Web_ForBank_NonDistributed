@@ -6,10 +6,10 @@ export default class extends AbstractView {
         this.setTitle("Cập nhật thông tin");
     }
 
-    setEventBtn(callback){
+    setEventBtn(callback) {
         //form validation
         $("#formSignUp").validate({
-            onkeyup: function(element) {
+            onkeyup: function (element) {
                 $(element).valid();
             },
             rules: {
@@ -78,13 +78,13 @@ export default class extends AbstractView {
             }
         });
         //end form validation
-        document.getElementById("signUpBtn").addEventListener("click", function(event){
+        document.getElementById("signUpBtn").addEventListener("click", function (event) {
             if (!$("#formSignUp").valid()) return;
             let formSignUp = document.getElementById('formSignUp');
             let formData = new FormData(formSignUp);
             formData.append("phai", document.getElementById("phai").value);
             var object = {};
-            formData.forEach(function(value, key){
+            formData.forEach(function (value, key) {
                 object[key] = value;
             });
             console.log(object);
@@ -100,11 +100,10 @@ export default class extends AbstractView {
                 })
                 .then(result => {
                     console.log(result);
-                    if ((result.message).includes("thành công")){
+                    if ((result.message).includes("thành công")) {
                         callback();
-                    }
-                    else{
-                        document.getElementById("errorMsg").innerHTML =  result.message;
+                    } else {
+                        document.getElementById("errorMsg").innerHTML = result.message;
                     }
                 })
                 .catch(err => {
@@ -136,42 +135,39 @@ export default class extends AbstractView {
     getHtml() {
         console.log(this.params.id);
         return `
-        <h2 id="errorMsg"></h2>
-        <form id="formSignUp" name="formSignUp">
-            <div class="form-group">
-                <input type="text" class="form-control" id="cmnd" name="cmnd"
-                    placeholder="CMND">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" id="ho" name="ho"
-                    placeholder="Họ">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" id="ten" name="ten"
-                    placeholder="Tên">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" id="diaChi" name="diaChi"
-                    placeholder="Địa chỉ">
-            </div>
+<div class="d-flex align-items-center justify-content-center">
 
-            <select id="phai">
-                <option value="Nam">Nam</option>
-                <option value="Nữ">Nữ</option>
-            </select>
+<h2 id="errorMsg"></h2>
+<form id="formSignUp" name="formSignUp">
+    <div class="form-group">
+        <input type="text" class="form-control mb-2" id="cmnd" name="cmnd" placeholder="CMND">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control mb-2" id="ho" name="ho" placeholder="Họ">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control mb-2" id="ten" name="ten" placeholder="Tên">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control mb-2" id="diaChi" name="diaChi" placeholder="Địa chỉ">
+    </div>
 
-            <div class="form-group">
-                <input type="text" class="form-control" id="ngayCap" name="ngayCap"
-                    placeholder="Ngày Cấp">
-            </div>
+    <select id="phai">
+        <option value="Nam">Nam</option>
+        <option value="Nữ">Nữ</option>
+    </select>
 
-            <div class="form-group">
-                <input type="text" class="form-control" id="soDT" name="soDT"
-                    placeholder="Số Điện Thoại">
-            </div>
+    <div class="form-group">
+        <input type="text" class="form-control mb-2" id="ngayCap" name="ngayCap" placeholder="Ngày Cấp">
+    </div>
 
-            <button id="signUpBtn" class="btn btn-primary">Cập Nhật</button>
-        </form>
-        `;
+    <div class="form-group">
+        <input type="text" class="form-control mb-2" id="soDT" name="soDT" placeholder="Số Điện Thoại">
+    </div>
+
+    <button id="signUpBtn" class="btn btn-primary">Cập Nhật</button>
+</form>
+</div>
+`;
     }
 }
