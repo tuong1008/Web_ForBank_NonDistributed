@@ -94,13 +94,14 @@ const router = async () => {
             //xóa phải chừa fbToken
         }
     } else if (view instanceof UserLogin) {
-        document.getElementById("trangChu").href=`/stat/${localStorage.getItem("soTK")}`; 
         document.querySelector("#app").innerHTML = view.getHtml();
         view.setEventLogin(function (uri) {
             navigateTo(`/stat/${localStorage.getItem("soTK")}`);
+            document.getElementById("trangChu").href=`/stat/${localStorage.getItem("soTK")}`; 
         });
         view.setEventLoginWithGoogle(function success() {
                 navigateTo(`/stat/${localStorage.getItem("soTK")}`);
+                document.getElementById("trangChu").href=`/stat/${localStorage.getItem("soTK")}`; 
             },
             function fail(email, ho, ten) {
                 navigateTo(`/signup/${email}/${ho}/${ten}`);
