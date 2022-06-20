@@ -28,7 +28,7 @@ export default class extends AbstractView {
             event.preventDefault();
             sendPasswordResetEmail(auth, document.getElementById("email").value)
             .then(() => {
-                console.log("Password reset email sent!");
+                alert("Password reset email sent!");
                 // ..
             })
             .catch((error) => {
